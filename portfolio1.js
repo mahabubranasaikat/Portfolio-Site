@@ -97,4 +97,38 @@
                 }
             }
             typeEffect();
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('menu-open');
+                document.querySelector('.main-nav').classList.toggle('active');
+            });
+
+            // Dark mode toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                document.body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+
+            // Animate skills on scroll
+            const skillsSection = document.getElementById('skills');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const fills = entry.target.querySelectorAll('.progress-fill');
+                        fills.forEach(fill => {
+                            fill.style.width = fill.getAttribute('data-width');
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(skillsSection);
         });
