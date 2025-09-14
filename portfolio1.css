@@ -85,6 +85,20 @@
             transition: transform 0.3s ease;
         }
         .social-nav a:hover { transform: scale(1.2); }
+
+        /* Search Highlight */
+        .search-highlight {
+            background: rgba(255, 255, 0, 0.3);
+            border-radius: 3px;
+            padding: 2px 4px;
+            animation: highlight-pulse 1s ease-in-out;
+        }
+
+        @keyframes highlight-pulse {
+            0% { background: rgba(255, 255, 0, 0.3); }
+            50% { background: rgba(255, 255, 0, 0.6); }
+            100% { background: rgba(255, 255, 0, 0.3); }
+        }
         .hero {
             display: flex;
             min-height: 100vh;
@@ -165,16 +179,11 @@
             }
         }
 
-        section { 
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s, transform 0.6s;
-            display: none; padding: 120px 20px 60px 20px; max-width: 900px; margin: 0 auto; min-height: 100vh; 
-        }
-        section.visible { 
+        section {
             opacity: 1;
             transform: translateY(0);
-            display: block; 
+            transition: opacity 0.6s, transform 0.6s;
+            display: block; padding: 120px 20px 60px 20px; max-width: 900px; margin: 0 auto; min-height: 100vh;
         }
         .section-card { border-radius: 20px; padding: 30px; }
         ul { list-style-type: none; padding: 0; }
@@ -262,9 +271,7 @@
             outline-offset: 2px;
         }
 
-        #contact .top-nav {
-            display: none;
-        }
+
 
         .home-button {
             position: fixed;
@@ -291,7 +298,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        #contact.visible .home-button {
+        #contact .home-button {
             display: flex;
         }
 

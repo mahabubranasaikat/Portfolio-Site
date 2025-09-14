@@ -5,16 +5,17 @@
             const hero = document.querySelector('.hero');
             const topNav = document.querySelector('.top-nav');
             const homeButton = document.getElementById('home-button');
-            const contactHomeButton = document.getElementById('contact-home-button');
 
-            const showSection = (targetId) => {
-                hero.style.display = 'none';
-                sections.forEach(sec => sec.classList.remove('visible'));
+
+            const scrollToSection = (targetId) => {
                 if (targetId) {
                     const targetSection = document.getElementById(targetId);
                     if (targetSection) {
-                        targetSection.classList.add('visible');
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
                     }
+                } else {
+                    // Scroll to top for home
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
                 navLinks.forEach(link => {
                     if (link.getAttribute('data-target') === targetId) {
@@ -25,42 +26,29 @@
                 });
             };
 
-            const showHome = () => {
-                hero.style.display = 'flex';
-                sections.forEach(sec => sec.classList.remove('visible'));
-                navLinks.forEach(link => link.classList.remove('active'));
-            };
-
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('data-target');
-                    if (targetId === 'contact') {
-                        topNav.style.display = 'none';
-                    } else {
-                        topNav.style.display = 'flex';
-                    }
-                    showSection(targetId);
+                    scrollToSection(targetId);
                 });
             });
 
-            homeLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                topNav.style.display = 'flex';
-                showHome();
-            });
+            if (homeLink) {
+                homeLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollToSection(null);
+                });
+            }
 
-            homeButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                topNav.style.display = 'flex';
-                showHome();
-            });
+            if (homeButton) {
+                homeButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollToSection(null);
+                });
+            }
 
-            contactHomeButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                topNav.style.display = 'flex';
-                showHome();
-            });
+
 
             const words = [
                 "Software Engineering Student",
@@ -73,6 +61,7 @@
             const typedText = document.getElementById("typed-text");
 
             function typeEffect() {
+                if (!typedText) return;
                 const currentWord = words[wordIndex];
                 const currentChars = currentWord.substring(0, charIndex);
                 typedText.textContent = currentChars;
@@ -80,11 +69,11 @@
                 if (!isDeleting && charIndex < currentWord.length) {
                     charIndex++;
                     setTimeout(typeEffect, 100);
-                } 
+                }
                 else if (isDeleting && charIndex > 0) {
                     charIndex--;
                     setTimeout(typeEffect, 50);
-                } 
+                }
                 else {
                     if (!isDeleting) {
                         isDeleting = true;
@@ -96,39 +85,45 @@
                     }
                 }
             }
-            typeEffect();
+            if (typedText) typeEffect();
 
             // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenuBtn.classList.toggle('menu-open');
-                document.querySelector('.main-nav').classList.toggle('active');
-            });
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenuBtn.classList.toggle('menu-open');
+                    document.querySelector('.main-nav').classList.toggle('active');
+                });
+            }
 
             // Dark mode toggle
             const themeToggle = document.getElementById('theme-toggle');
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', currentTheme);
-            themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+            if (themeToggle) {
+                const currentTheme = localStorage.getItem('theme') || 'light';
+                document.body.setAttribute('data-theme', currentTheme);
+                themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
 
-            themeToggle.addEventListener('click', () => {
-                const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                document.body.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            });
+                themeToggle.addEventListener('click', () => {
+                    const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    document.body.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+                });
+            }
 
             // Animate skills on scroll
             const skillsSection = document.getElementById('skills');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const fills = entry.target.querySelectorAll('.progress-fill');
-                        fills.forEach(fill => {
-                            fill.style.width = fill.getAttribute('data-width');
-                        });
-                    }
-                });
-            }, { threshold: 0.5 });
-            observer.observe(skillsSection);
+            if (skillsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const fills = entry.target.querySelectorAll('.progress-fill');
+                            fills.forEach(fill => {
+                                fill.style.width = fill.getAttribute('data-width');
+                            });
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(skillsSection);
+            }
         });
