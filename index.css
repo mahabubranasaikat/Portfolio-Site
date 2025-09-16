@@ -358,7 +358,7 @@
             width: 0;
             transition: width 1s ease;
         }
-        @media (max-width: 768px) { .main-nav { display: none; } }
+
         @media (max-width: 768px) {
             .title { font-size: 1.8rem; }
             .greeting { font-size: 1.8rem; }
@@ -418,14 +418,14 @@
 
         @media (max-width: 480px) {
             .contact-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 12px;
                 padding: 10px;
             }
             .contact-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
             }
         }
 
