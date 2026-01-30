@@ -4,269 +4,668 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Md Mahabub Rana Saikat, Software Engineering Student showcasing skills in C, C++, Python, Java, HTML, CSS, JavaScript.">
-    <title>Md Mahabub Rana Saikat - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-     <link rel="stylesheet" href="index.css">
-      <script src="index.js"></script>
+    <meta name="description" content="Md Mahabub Rana Saikat - Software Engineering Student at SUST. Full-stack developer, competitive programmer, and innovative problem solver.">
+    <meta name="theme-color" content="#6366f1">
+    <title>Md Mahabub Rana Saikat | Full-Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
 </head>
 
-<body>
+<body data-theme="dark">
 
-    <nav class="top-nav liquid-glass">
-        <div class="nav-logo">
-            <a href="#" id="home-nav-link">Saikat</a>
-        </div>
-        <div class="mobile-menu-btn">
-            <div class="menu-icon">
+    <!-- Modern Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-section">
+                <a href="#home" class="logo">
+                    <span class="logo-icon">✨</span>
+                    <span class="logo-text">Saikat</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
+            </button>
+
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#education" class="nav-link" data-section="education">Education</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </div>
+
+            <div class="nav-right">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
-        <div class="main-nav">
-            <a href="#" data-target="projects">Projects</a>
-            <a href="#" data-target="skills">Skills</a>
-            <a href="#" data-target="me">Me</a>
-            <a href="#" data-target="contact">Contact</a>
-        </div>
-          <div class="social-nav">
-              <a href="https://github.com/mahabubranasaikat" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://linkedin.com/in/mahabubranasaikat" target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="https://twitter.com/mahbubrnasaikat" target="_blank"><i class="fab fa-x-twitter"></i></a>
-          </div>
-          <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
     </nav>
 
     <main>
-        <div class="hero">
-            <div class="hero-grid">
-                <div class="hero-image">
-                     <picture>
-                         <source srcset="saikat.webp" type="image/webp">
-                         <img src="saikat.jpg" alt="Profile Photo" class="profile-photo" loading="lazy">
-                     </picture>
-                </div>
-                <div class="hero-content liquid-glass">
-                    <div class="hero-text">
-                        <h2 class="greeting">Md Mahabub Rana Saikat</h2>
-                        <h3 class="title"><span id="typed-text"></span><span id="cursor">|</span></h3>
-                          <a href="https://mahabubranasaikat.github.io/One_page_CV/" target="_blank" class="cv-button">
-                             <i class="fas fa-eye"></i>
-                             Show CV
-                         </a>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">Welcome to my portfolio</div>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Md Mahabub Rana Saikat</span>
+                    </h1>
+                    <p class="hero-subtitle">Developer | Competitive Programmer | Software Engineering Student</p>
+                    <p class="hero-description">
+                        3rd Year Software Engineering Student at SUST. Passionate about building scalable applications and solving complex problems through elegant code.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <span>View My Work</span>
+                            <i class="fas fa-code"></i>
+                        </a>
                     </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <picture>
+                            <source srcset="saikat.png" type="image/png">
+                            <img src="saikat.png" alt="Md Mahabub Rana Saikat" class="profile-image">
+                        </picture>
+                        <div class="floating-badge">
+                            <i class="fas fa-code"></i>
+                            <span>Developer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">A showcase of my best work</p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- iOS Development -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">📱</div>
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">iOS Development</span>
+                            <h3>Todo, Stopwatch & Timer</h3>
+                            <p>Practice projects in Swift for iOS development. Includes todo list, stopwatch, and timer with intuitive UI.</p>
+                            <div class="project-tech">
+                                <span class="tech">Swift</span>
+                                <span class="tech">SwiftUI</span>
+                                <span class="tech">Xcode</span>
+                            </div>
+                            <a href="#" class="project-github">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Full-Stack Project 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">🏛️</div>
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">Full-Stack</span>
+                            <h3>SWE Society Management</h3>
+                            <p>Platform for managing student society activities, events, and member tracking with JWT authentication.</p>
+                            <div class="project-tech">
+                                <span class="tech">Node.js</span>
+                                <span class="tech">Express</span>
+                                <span class="tech">MySQL</span>
+                            </div>
+                            <a href="#" class="project-github">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Full-Stack Project 2 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">💻</div>
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">Web Technologies</span>
+                            <h3>ProjecTra</h3>
+                            <p>Student project management and discovery platform. Enables students to create, manage, and discover projects.</p>
+                            <div class="project-tech">
+                                <span class="tech">JavaScript</span>
+                                <span class="tech">Express</span>
+                                <span class="tech">MySQL</span>
+                            </div>
+                            <a href="#" class="project-github">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Flutter Project -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">🌱</div>
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">Mobile Development</span>
+                            <h3>Climate Hope</h3>
+                            <p>OOP-based environmental awareness app focused on climate change education and sustainable practices.</p>
+                            <div class="project-tech">
+                                <span class="tech">Dart</span>
+                                <span class="tech">Flutter</span>
+                                <span class="tech">MongoDB</span>
+                            </div>
+                            <a href="https://github.com/Saikat-Sust/SDL_project_" class="project-github" target="_blank">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Game Development -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">🐍</div>
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">Game Development</span>
+                            <h3>Snake Game</h3>
+                            <p>Classic snake game with modern features and smooth controls built using structured programming principles.</p>
+                            <div class="project-tech">
+                                <span class="tech">C++</span>
+                                <span class="tech">SDL2</span>
+                            </div>
+                            <a href="https://github.com/mahabubranasaikat/Project_SWE250" class="project-github" target="_blank">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Circuit Designing -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="image-placeholder">🔌</div>
+                            <div class="project-overlay">
+                                <a href="#" class="project-link">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">Circuit Design</span>
+                            <h3>Python Schemedraw</h3>
+                            <p>Electrical circuit drawing and visualization tool for designing and documenting circuit schematics programmatically.</p>
+                            <div class="project-tech">
+                                <span class="tech">Python</span>
+                                <span class="tech">Schemedraw</span>
+                            </div>
+                            <a href="#" class="project-github">
+                                <i class="fab fa-github"></i> Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">Tools and technologies I work with</p>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Programming & Competitive Programming -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Competitive Programming</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">C</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">C++</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OOP & Design Patterns -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-puzzle-piece"></i> OOP & Design</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Java</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frontend -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-palette"></i> Frontend</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">HTML5</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">CSS3</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-server"></i> Backend</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Node.js</span>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Express.js</span>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Database -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-database"></i> Database</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">MySQL</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">MongoDB</span>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-mobile-alt"></i> Mobile Dev</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Flutter</span>
+                                    <span class="skill-percent">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Swift</span>
+                                    <span class="skill-percent">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Other -->
+                    <div class="skill-category">
+                        <h3><i class="fas fa-tools"></i> Tools & Other</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Git & GitHub</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-percent">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Education</h2>
+                    <p class="section-subtitle">My academic journey</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023 - Present</div>
+                            <h3>B.Sc. in Software Engineering</h3>
+                            <p class="timeline-institution">Shahjalal University of Science and Technology (SUST), Sylhet</p>
+                            <p class="timeline-detail">IICT Institute • Currently in 3rd Year, 2nd Semester</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019 - 2021</div>
+                            <h3>Higher Secondary Certificate (HSC) – Science</h3>
+                            <p class="timeline-institution">Govt. Shah Sultan College, Bogra</p>
+                            <p class="timeline-detail"><strong>GPA: 5.0</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2014 - 2019</div>
+                            <h3>Secondary School Certificate (SSC) – Science</h3>
+                            <p class="timeline-institution">Naogaon Zilla School, Naogaon</p>
+                            <p class="timeline-detail"><strong>GPA: 5.0</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-section">
+                    <h3>Roles & Achievements</h3>
+                    <div class="achievement-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon">⭐</div>
+                            <h4>Publication Secretary</h4>
+                            <p>SWE Society, SUST</p>
+                            <small>July 2025 - Present • 6th Executive Committee</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate about technology and continuous learning</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">👨‍💻</div>
+                        <h3>Who I Am</h3>
+                        <p>I'm a Software Engineering student at Shahjalal University of Science and Technology (SUST), currently in my 3rd year, 2nd semester. I'm passionate about Computer Science, Physics, and building innovative solutions that make a real impact.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">📍</div>
+                        <h3>Location</h3>
+                        <p>Based in Akhaliya, Sylhet, Bangladesh. Available for remote work and collaboration on exciting projects worldwide.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">🌍</div>
+                        <h3>Languages</h3>
+                        <div class="language-badges">
+                            <span class="badge">Bangla (Native)</span>
+                            <span class="badge">English (Professional)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Dedicated</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's create something amazing together</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="info-items">
+                            <a href="tel:+8801753610727" class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="info-text">
+                                    <span class="info-label">Phone</span>
+                                    <span class="info-value">+880 1753 610727</span>
+                                </div>
+                            </a>
+
+                            <a href="mailto:mahabubranasaikat@gmail.com" class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-text">
+                                    <span class="info-label">Email</span>
+                                    <span class="info-value">mahabubranasaikat@gmail.com</span>
+                                </div>
+                            </a>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-text">
+                                    <span class="info-label">Address</span>
+                                    <span class="info-value">Akhaliya, Sylhet, Bangladesh</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 2rem;">Also Find Me On</h3>
+                        <div class="social-grid">
+                            <a href="tel:+8801753610727" class="social-link" title="Call me">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <a href="mailto:mahabubranasaikat@gmail.com" class="social-link" title="Email me">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/mahabubranasaikat" target="_blank" class="social-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/mahabubranasaikat" target="_blank" class="social-link" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/mahbubrnasaikat" target="_blank" class="social-link" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://facebook.com/mahabubranasaikat" target="_blank" class="social-link" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://t.me/mahabubranasaikat" target="_blank" class="social-link" title="Telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="https://wa.me/01753610727" target="_blank" class="social-link" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://codeforces.com/profile/mahabubranasaikat" target="_blank" class="social-link" title="Codeforces">
+                                <i class="fas fa-code"></i>
+                            </a>
+                            <a href="https://leetcode.com/mahabubranasaikat" target="_blank" class="social-link" title="LeetCode">
+                                <i class="fas fa-square"></i>
+                            </a>
+                            <a href="https://vjudge.net/user/mahabubranasaikat" target="_blank" class="social-link" title="VJudge">
+                                <i class="fas fa-gavel"></i>
+                            </a>
+                            <a href="https://yourwebsite.com" target="_blank" class="social-link" title="Website">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-section">
+                        <h3>Send Me a Message</h3>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                <label for="name">Full Name</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                                <label for="email">Email Address</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your message here..." rows="5" required></textarea>
+                                <label for="message">Message</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Md Mahabub Rana Saikat. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
         </div>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="section-card liquid-glass">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>🌍 Climate Hope</h3>
-                        <p class="project-description">
-                            An Object-Oriented Programming (OOP) application focused on environmental awareness
-                            and climate change education.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Dart</span>
-                            <span class="tech-tag">Flutter</span>
-                             <span class="tech-tag">MongoDB</span>
-                        </div>
-                         <div class="project-links">
-                             <a href="https://github.com/Saikat-Sust/SDL_project_" target="_blank">
-                                 <i class="fab fa-github"></i> Source Code
-                             </a>
-                         </div>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>🐍 Snake Game</h3>
-                        <p class="project-description">
-                            A classic implementation of the snake game with modern features and smooth controls.
-                            Built to practice fundamental programming logic.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">c++</span>
-                            <span class="tech-tag">SDL</span>
-                        </div>
-                         <div class="project-links">
-                             <a href="https://github.com/mahabubranasaikat/Project_SWE250" target="_blank">
-                                 <i class="fab fa-github"></i> Source Code
-                             </a>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2>My Skills</h2>
-            <div class="section-card liquid-glass">
-                <div class="skills-container">
-                    <div class="skill-card">
-                        <div class="skill-icon">💻</div>
-                        <div class="skill-name">C</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="60%"></div>
-                         </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">🔧</div>
-                        <div class="skill-name">C++</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="75%"></div>
-                         </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">🐍</div>
-                        <div class="skill-name">Python</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="40%"></div>
-                         </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">☕</div>
-    <div class="skill-name">Java</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="50%"></div>
-                         </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">📱</div>
-                        <div class="skill-name">HTML</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="80%"></div>
-                         </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">🎨</div>
-    <div class="skill-name">CSS</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="50%"></div>
-                         </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">⚡</div>
-    <div class="skill-name">JavaScript</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="50%"></div>
-                         </div>
-                    </div>
-
-                     <div class="skill-card">
-                         <div class="skill-icon">🎯</div>
-                         <div class="skill-name">OOP (Java)</div>
-                         <div class="progress-bar">
-                             <div class="progress-fill" data-width="70%"></div>
-                         </div>
-                     </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="me">
-            <h2>About Me</h2>
-            <div class="section-card liquid-glass">
-                <div class="about-grid">
-                    <!-- Personal Description -->
-                    <div class="about-section">
-                        <h3>👨‍💻 Who Am I?</h3>
-                        <p>Hi, I am a Software Engineering undergraduate student at Shahjalal University of Science and Technology.
-                           I am currently in my 3rd year, 1st semester. I'm passionate about developing innovative software solutions
-                           and exploring new technologies.</p>
-                    </div>
-
-                    <!-- Education Background -->
-                    <div class="about-section">
-                        <h3>🎓 Education</h3>
-                        <div class="education-card">
-                            <h4>B.Sc. in Software Engineering</h4>
-                            <p>Shahjalal University of Science and Technology, Sylhet</p>
-                            <span class="education-status">Currently Studying</span>
-                        </div>
-
-                        <div class="education-card">
-                            <h4>HSC (Science)</h4>
-                            <p>Bogra Govt. Shah Sultan College, Bogra</p>
-                            <span class="education-grade">GPA: 5.00</span>
-                        </div>
-
-                        <div class="education-card">
-                            <h4>SSC (Science)</h4>
-                            <p>Naogaon Zilla School, Naogaon</p>
-                            <span class="education-grade">GPA: 5.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <div class="section-card liquid-glass">
-                <div class="contact-grid">
-                    <a href="tel:+8801793489366" class="contact-icon" title="Call me">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                    <a href="mailto:mahabubranasaikat@gmail.com" class="contact-icon" title="Email me">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://github.com/mahabubranasaikat" target="_blank" class="contact-icon" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/mahabubranasaikat" target="_blank" class="contact-icon" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://twitter.com/mahbubrnasaikat" target="_blank" class="contact-icon" title="Twitter">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                    <a href="https://facebook.com/mahabubranasaikat" target="_blank" class="contact-icon" title="Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://t.me/mahabubranasaikat" target="_blank" class="contact-icon" title="Telegram">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="https://wa.me/01793489366" target="_blank" class="contact-icon" title="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://codeforces.com/profile/yourusername" target="_blank" class="contact-icon" title="Codeforces">
-                        <i class="fas fa-code"></i>
-                    </a>
-                    <a href="https://leetcode.com/yourusername" target="_blank" class="contact-icon" title="LeetCode">
-                        <i class="fas fa-code"></i>
-                    </a>
-                     <a href="https://vjudge.net/user/yourusername" target="_blank" class="contact-icon" title="VJudge">
-                         <i class="fas fa-gavel"></i>
-                     </a>
-                     <a href="https://yourwebsite.com" target="_blank" class="contact-icon" title="Website">
-                         <i class="fas fa-globe"></i>
-                     </a>
-
-                 </div>
-            </div>
-        </section>
-
-        <a href="#" class="home-button" id="home-button">
-            <i class="fas fa-home"></i>
-        </a>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Md Mahabub Rana Saikat. All rights reserved.</p>
     </footer>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
 </body>
 </html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Md Mahabub Rana Saikat, Software Engineering Student at SUST">
+  <title>Md Mahabub Rana Saikat — Software Engineering Student</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F8F8F8;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      border-bottom: 1px solid #DDDDDD;
+      background: #F8F8F8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #666;
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid #111;
+      padding: 10px 24px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: #111;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #111;
+      color: #F8F8F8;
+    }
+
+    .btn-primary {
+      background: #111;
+      color: #F8F8F8;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: #111;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 100px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .small {
+      font-size: 14px;
+      color: #666;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 110px;
+      font-weight: 700;
+      line-height: 0.9;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 18px;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 60px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid #DDDDDD;
+    }
+
+    .stat-item strong {
+      font-size: 40px;
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-item span {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      filter: grayscale(100%);
+      border: 1px solid #DDDDDD;
+    }
+
+    /* ABOUT SECTION */
+    .about {
+      padding: 80px 0;
+      background: #FFFFFF;
+      border-top: 1px solid #DDDDDD;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .section-label {
+      font-size: 14px;
+      color: #666;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .about-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .about-content p {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 16px;
+      max-width: 650px;
+    }
+
+    /* EDUCATION SECTION */
+    .education {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .education-card {
+      border: 1px solid #DDDDDD;
+      padding: 32px 24px;
+      background: #FFFFFF;
+      transition: transform 0.3s;
+    }
+
+    .education-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .education-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .education-card h4 {
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .education-card p {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+
+    .education-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #F0F0F0;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 2px;
+    }
+
+    .education-badge.gpa {
+      background: #111;
+      color: #F8F8F8;
+    }
+
+    .education-badge.current {
+      background: #7B61FF;
+      color: #FFFFFF;
+    }
+
+    /* SKILLS SECTION */
+    .skills {
+      padding: 80px 0;
+      background: #FFFFFF;
+      border-top: 1px solid #DDDDDD;
+    }
+
+    .skills-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      padding: 40px;
+      background: #F8F8F8;
+      border: 1px solid #DDDDDD;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .skill-level {
+      height: 4px;
+      background: #EEEEEE;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar {
+      height: 100%;
+      background: #111;
+      transition: width 1s ease;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .expertise-card {
+      border: 1px solid #DDDDDD;
+      padding: 40px 32px;
+      background: #FFFFFF;
+      transition: transform 0.3s;
+    }
+
+    .expertise-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .expertise-icon {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    .expertise-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .expertise-card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* PORTFOLIO SECTION */
+    .portfolio {
+      padding: 80px 0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .portfolio-item {
+      border: 1px solid #DDDDDD;
+      overflow: hidden;
+      background: #FFFFFF;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .portfolio-info {
+      padding: 24px;
+    }
+
+    .portfolio-info h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-info p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .project-links {
+      margin-top: 12px;
+    }
+
+    .project-links a {
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid #111;
+      padding-bottom: 2px;
+      transition: opacity 0.3s;
+    }
+
+    .project-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* CONTACT CTA */
+    .contact-cta {
+      padding: 100px 0;
+      text-align: center;
+      background: #FFFFFF;
+      border-top: 1px solid #DDDDDD;
+    }
+
+    .contact-cta h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .contact-cta p {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid #DDDDDD;
+      padding: 48px 0;
+      background: #F8F8F8;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #111;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #DDDDDD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #111;
+      font-size: 16px;
+      transition: all 0.3s;
+      background: #FFFFFF;
+    }
+
+    .social-link:hover {
+      background: #111;
+      color: #F8F8F8;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 968px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+      }
+
+      .hero-image {
+        justify-content: center;
+      }
+
+      .skills-showcase {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .expertise-grid,
+      .portfolio-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .contact-cta h2 {
+        font-size: 36px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .stats {
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">✦ Saikat</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="https://mahabubranasaikat.github.io/One_page_CV/" target="_blank" class="btn">View CV</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="small">— Software Engineering Student</p>
+        <h1>Hello</h1>
+        <p class="subtitle">I'm Md Mahabub Rana Saikat, a passionate developer creating innovative software solutions and exploring new technologies.</p>
+
+        <div class="stats">
+          <div class="stat-item">
+            <strong>3rd</strong>
+            <span>Year Student</span>
+          </div>
+          <div class="stat-item">
+            <strong>7+</strong>
+            <span>Technologies</span>
+          </div>
+          <div class="stat-item">
+            <strong>5.00</strong>
+            <span>HSC GPA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="saikat.png" alt="Md Mahabub Rana Saikat" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <p class="section-label">About Me</p>
+        </div>
+        <div class="about-content">
+          <h2>Software Engineering student at SUST, passionate about innovation</h2>
+          <p>Hi, I am a Software Engineering undergraduate at Shahjalal University of Science and Technology, currently in my 3rd year, 1st semester. I'm dedicated to developing innovative software solutions and constantly exploring emerging technologies.</p>
+          <p>With a strong academic foundation (GPA 5.00 in both SSC and HSC), I combine theoretical knowledge with practical skills in multiple programming languages including C, C++, Java, Python, and web technologies. My approach focuses on creating efficient, well-structured solutions that solve real-world problems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section class="education" id="education">
+    <div class="container">
+      <div class="section-header">
+        <h2>Education</h2>
+      </div>
+      <div class="education-grid">
+        <div class="education-card">
+          <h3>B.Sc. Software Engineering</h3>
+          <h4>SUST</h4>
+          <p>Shahjalal University of Science and Technology, Sylhet</p>
+          <span class="education-badge current">Currently Studying</span>
+        </div>
+        <div class="education-card">
+          <h3>Higher Secondary (HSC)</h3>
+          <h4>Science Group</h4>
+          <p>Bogra Govt. Shah Sultan College, Bogra</p>
+          <span class="education-badge gpa">GPA: 5.00</span>
+        </div>
+        <div class="education-card">
+          <h3>Secondary School (SSC)</h3>
+          <h4>Science Group</h4>
+          <p>Naogaon Zilla School, Naogaon</p>
+          <span class="education-badge gpa">GPA: 5.00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2>My Skills</h2>
+      </div>
+      
+      <!-- Technical Skills Grid -->
+      <div class="skills-showcase">
+        <div class="skill-item">
+          <span class="skill-name">HTML/CSS</span>
+          <div class="skill-level">
+            <div class="skill-bar" style="width: 80%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">C++</span>
+          <div class="skill-level">
+            <div class="skill-bar" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Java (OOP)</span>
+          <div class="skill-level">
+            <div class="skill-bar" style="width: 70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">C</span>
+          <div class="skill-level">
+            <div class="skill-bar" style="width: 60%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">JavaScript</span>
+          <div class="skill-level">
+            <div class="skill-bar" style="width: 50%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Python</span>
+          <div class="skill-level">
+            <div class="skill-bar" style="width: 40%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expertise Areas -->
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-icon">🔧</div>
+          <h3>C++ Development</h3>
+          <p>Strong foundation in C++ with experience in building applications using SDL and game development.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">☕</div>
+          <h3>Object-Oriented Programming</h3>
+          <p>Proficient in OOP concepts with Java, creating well-structured and maintainable code architectures.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">📱</div>
+          <h3>Full-Stack Web Dev</h3>
+          <p>Building modern web applications with HTML, CSS, JavaScript, and backend technologies like MongoDB.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO SECTION -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <a href="https://github.com/mahabubranasaikat" target="_blank" class="btn">View GitHub</a>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🌍</div>
+          <div class="portfolio-info">
+            <h3>Climate Hope</h3>
+            <p>OOP application for environmental awareness • Dart, Flutter, MongoDB</p>
+            <div class="project-links">
+              <a href="https://github.com/Saikat-Sust/SDL_project_" target="_blank">View on GitHub →</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🐍</div>
+          <div class="portfolio-info">
+            <h3>Snake Game</h3>
+            <p>Classic snake game with modern features • C++, SDL</p>
+            <div class="project-links">
+              <a href="https://github.com/mahabubranasaikat/Project_SWE250" target="_blank">View on GitHub →</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📄</div>
+          <div class="portfolio-info">
+            <h3>One Page CV</h3>
+            <p>Clean, responsive CV template • HTML, CSS, JavaScript</p>
+            <div class="project-links">
+              <a href="https://mahabubranasaikat.github.io/One_page_CV/" target="_blank">View Live →</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">💼</div>
+          <div class="portfolio-info">
+            <h3>Portfolio Website</h3>
+            <p>Minimal editorial-style portfolio • HTML, CSS</p>
+            <div class="project-links">
+              <a href="#" target="_blank">You're viewing it! →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="contact-cta" id="contact">
+    <div class="container">
+      <h2>Let's work together<br/>on your next project</h2>
+      <p>Have an idea? Let's bring it to life.</p>
+      <div class="cta-buttons">
+        <a href="mailto:mahabubranasaikat@gmail.com" class="btn btn-primary">Get in Touch</a>
+        <a href="tel:+8801793489366" class="btn">Call Me</a>
+        <a href="https://mahabubranasaikat.github.io/One_page_CV/" target="_blank" class="btn">View CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="https://github.com/mahabubranasaikat" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/mahabubranasaikat" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com/mahbubrnasaikat" target="_blank">Twitter</a>
+          <a href="https://facebook.com/mahabubranasaikat" target="_blank">Facebook</a>
+          <a href="mailto:mahabubranasaikat@gmail.com">Email</a>
+        </div>
+        <p style="color: #666; font-size: 14px;">© 2026 Md Mahabub Rana Saikat. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://github.com/mahabubranasaikat" target="_blank" class="social-link" title="GitHub">GH</a>
+          <a href="https://linkedin.com/in/mahabubranasaikat" target="_blank" class="social-link" title="LinkedIn">IN</a>
+          <a href="https://twitter.com/mahbubrnasaikat" target="_blank" class="social-link" title="Twitter">TW</a>
+          <a href="https://wa.me/8801793489366" target="_blank" class="social-link" title="WhatsApp">WA</a>
+          <a href="https://t.me/mahabubranasaikat" target="_blank" class="social-link" title="Telegram">TG</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
