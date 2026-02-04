@@ -1,0 +1,289 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { GraduationCap, School, BookOpen, Calendar, MapPin, Award } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const Education = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const educationData = [
+    {
+      degree: 'B.Sc. Software Engineering',
+      institution: 'SUST - Shahjalal University',
+      location: 'Sylhet',
+      duration: '2023 – Present',
+      status: '3rd Year',
+      icon: GraduationCap,
+      color: 'from-red to-orange-500',
+      highlight: true,
+    },
+    {
+      degree: 'Higher Secondary Certificate',
+      institution: 'Govt. Shah Sultan College',
+      location: 'Bogra',
+      duration: '2019 – 2021',
+      status: 'GPA: 5.0',
+      icon: BookOpen,
+      color: 'from-blue-500 to-cyan-500',
+      highlight: false,
+    },
+    {
+      degree: 'Secondary School Certificate',
+      institution: 'Naogaon Zilla School',
+      location: 'Naogaon',
+      duration: '2014 – 2019',
+      status: 'GPA: 5.0',
+      icon: School,
+      color: 'from-purple-500 to-pink-500',
+      highlight: false,
+    },
+  ];
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.fromTo(
+        '.edu-header',
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Accent line
+      gsap.fromTo(
+        '.edu-accent',
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 0.6,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 65%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Timeline line animation
+      gsap.fromTo(
+        '.timeline-line',
+        { scaleY: 0, transformOrigin: 'top' },
+        {
+          scaleY: 1,
+          duration: 1,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Timeline items stagger animation
+      gsap.fromTo(
+        '.edu-item',
+        { x: (index) => (index % 2 === 0 ? -50 : 50), opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: 'top 65%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Timeline dots animation
+      gsap.fromTo(
+        '.edu-dot',
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: 'elastic.out(1.3, 0.7)',
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: 'top 65%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // Content cards animation
+      gsap.fromTo(
+        '.edu-card',
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: timelineRef.current,
+            start: 'top 60%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="education"
+      className="relative py-28 lg:py-32 bg-black overflow-hidden"
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-dark-100/20 to-black opacity-40" />
+      
+      {/* Animated Red Glow */}
+      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-red/10 rounded-full blur-[150px] pointer-events-none animate-pulse" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+        {/* Section Header */}
+        <div className="mb-16">
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-dark-100/70 border border-white/10 rounded-full mb-6">
+            <div className="w-2 h-2 bg-red rounded-full animate-pulse" />
+            <span className="text-xs text-red font-medium tracking-[0.2em] uppercase">
+              Academic Journey
+            </span>
+          </div>
+          
+          <h2 className="edu-header font-display text-5xl sm:text-6xl text-white mb-4">
+            EDUCATION
+          </h2>
+          <div className="edu-accent w-24 h-1 bg-gradient-to-r from-red via-red/50 to-transparent origin-left" />
+        </div>
+
+        {/* Modern Alternating Timeline */}
+        <div ref={timelineRef} className="relative">
+          {/* Vertical Timeline Line - Center */}
+          <div className="timeline-line hidden lg:block absolute left-1/2 -translate-x-1/2 top-6 bottom-0 w-1 bg-gradient-to-b from-red via-red/50 to-transparent" />
+
+          {/* Timeline Items */}
+          <div className="space-y-14 lg:space-y-16">
+            {educationData.map((edu, index) => (
+              <div
+                key={index}
+                className={`edu-item relative flex items-center gap-6 lg:gap-0 ${
+                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                }`}
+              >
+                {/* Content Card - Wider and Shorter */}
+                <div className={`w-full lg:w-5/12 ${
+                  index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'
+                }`}>
+                  <div className="edu-card group relative bg-gradient-to-br from-dark-100/75 to-dark-200/40 backdrop-blur-md border border-white/10 rounded-xl p-6 transition-all duration-500 hover:border-red/50 hover:shadow-2xl hover:shadow-red/25 hover:-translate-y-1 overflow-hidden">
+                    
+                    {/* Highlight Badge - Positioned Inside Box */}
+                    {edu.highlight && (
+                      <div className="absolute top-3 right-3 px-2.5 py-1 bg-gradient-to-r from-red to-orange-500 text-black text-xs font-bold rounded-md shadow-md text-center min-w-max">
+                        CURRENT
+                      </div>
+                    )}
+
+                    {/* Background Glow Effect */}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    {/* Top border accent animation */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red/0 to-transparent group-hover:via-red/50 transition-all duration-500" />
+
+                    {/* Content */}
+                    <div className="relative z-10 space-y-3">
+                      {/* Degree - More Compact */}
+                      <div>
+                        <h3 className="font-display text-lg sm:text-xl text-white group-hover:text-red transition-colors duration-400 leading-snug">
+                          {edu.degree}
+                        </h3>
+                      </div>
+
+                      {/* Institution and Location - Inline on Desktop */}
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-gray-300 text-sm">
+                        <div className="flex items-center gap-1.5">
+                          <MapPin className="w-4 h-4 text-red flex-shrink-0" />
+                          <p className="font-medium">{edu.institution}</p>
+                        </div>
+                        <span className="hidden sm:inline text-gray-500">•</span>
+                        <p className="text-gray-400">{edu.location}</p>
+                      </div>
+
+                      {/* Duration and Status - Horizontal Layout */}
+                      <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
+                        <div className="flex items-center gap-1.5 text-gray-300">
+                          <Calendar className="w-4 h-4 text-red flex-shrink-0" />
+                          <span className="font-medium">{edu.duration}</span>
+                        </div>
+                        
+                        <div className="flex items-center gap-1.5 text-red font-medium">
+                          <Award className="w-4 h-4 flex-shrink-0" />
+                          <span>{edu.status}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Corner Accent - Smaller and Subtle */}
+                    <div className="absolute -bottom-0.5 -right-0.5 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-xl group-hover:border-red/50 transition-colors duration-500 opacity-0 group-hover:opacity-100" />
+                    <div className="absolute -top-0.5 -left-0.5 w-10 h-10 border-l-2 border-t-2 border-red/10 rounded-tl-xl group-hover:border-red/30 transition-colors duration-500" />
+                  </div>
+                </div>
+
+                {/* Center Timeline Dot - Desktop Only */}
+                <div className="hidden lg:flex lg:w-2/12 justify-center">
+                  <div className="edu-dot relative z-20">
+                    {/* Main Dot */}
+                    <div className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-red/50 border-4 border-black`}>
+                      <edu.icon className="w-8 h-8 text-white" />
+                    </div>
+
+                    {/* Pulse Ring on Hover */}
+                    <div className="absolute inset-0 rounded-full border-2 border-red/0 group-hover:border-red/40 scale-125 transition-all duration-500 group-hover:scale-150" />
+                  </div>
+                </div>
+
+                {/* Mobile Timeline Dot */}
+                <div className="lg:hidden flex-shrink-0">
+                  <div className="edu-dot relative z-20">
+                    <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg border-4 border-black transition-all duration-500 group-hover:scale-110`}>
+                      <edu.icon className="w-7 h-7 text-white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Timeline Flourish */}
+          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -bottom-6 justify-center">
+            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red to-orange-500 border-4 border-black shadow-lg" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Education;
