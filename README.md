@@ -113,11 +113,19 @@ portfolio/
 ## 🎨 Design System
 
 ### Color Palette
-- **Primary Red**: `#ff3b30`
-- **Black Background**: `#0a0a0a`
+- **Blackish-Red (Primary)**: `#d32f2f` - Main accent color throughout
+- **Dark Red Range**: `#1f0606` to `#4a0e0e` - Subtle dark variations
+- **Orange-Dark**: `#d97706` - Secondary accent
+- **Amber-Dark**: `#b45309` - Tertiary accent
+- **Black Background**: `#0a0a0a` - Main background
 - **Dark Variants**:
-  - `dark-100`: `#1a1a1a`
-  - `dark-200`: `#2a2a2a`
+  - `dark-100`: `#1a1a1a` - Card backgrounds
+  - `dark-200`: `#2a2a2a` - Element backgrounds
+
+### Color Gradients
+- **Primary Gradient**: Blackish-Red → Orange-Dark
+- **Secondary Gradients**: Red → Amber/Orange variations
+- **Hover Effects**: All use blackish-red (#d32f2f) with transparency
 
 ### Typography
 - **Display Font**: Bebas Neue (headings)
@@ -132,7 +140,7 @@ portfolio/
 ```css
 /* Standard card hover */
 border border-white/10
-→ hover:border-red/50
+→ hover:border-red/50 (blackish-red)
 → hover:shadow-2xl hover:shadow-red/25
 → hover:-translate-y-1
 ```
