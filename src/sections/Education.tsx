@@ -18,7 +18,7 @@ const Education = () => {
       duration: '2023 – Present',
       status: '3rd Year (Current)',
       icon: GraduationCap,
-      color: 'from-red to-orange-500',
+      color: 'from-red to-amber-700',
       highlight: true,
     },
     {
@@ -29,7 +29,7 @@ const Education = () => {
       duration: '2019 – 2021',
       status: 'GPA: 5.0',
       icon: BookOpen,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-red to-orange-700',
       highlight: false,
     },
     {
@@ -40,7 +40,7 @@ const Education = () => {
       duration: '2014 – 2019',
       status: 'GPA: 5.0',
       icon: School,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-red to-amber-800',
       highlight: false,
     },
   ];
@@ -204,7 +204,7 @@ const Education = () => {
                     
                     {/* Highlight Badge - Positioned Inside Box */}
                     {edu.highlight && (
-                      <div className="absolute top-3 right-3 px-2.5 py-1 bg-gradient-to-r from-red to-orange-500 text-black text-xs font-bold rounded-md shadow-md text-center min-w-max">
+                      <div className="absolute top-3 right-3 px-2.5 py-1 bg-gradient-to-r from-red to-amber-700 text-black text-xs font-bold rounded-md shadow-md text-center min-w-max">
                         CURRENT
                       </div>
                     )}
@@ -290,7 +290,7 @@ const Education = () => {
 
           {/* Bottom Timeline Flourish */}
           <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -bottom-6 justify-center">
-            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red to-orange-500 border-4 border-black shadow-lg" />
+            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red to-amber-700 border-4 border-black shadow-lg" />
           </div>
         </div>
       </div>

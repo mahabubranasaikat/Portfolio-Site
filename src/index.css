@@ -12,13 +12,13 @@
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 100% 50%;
+     --primary: 0 84% 60%;
     --primary-foreground: 0 0% 0%;
     --secondary: 0 0% 7%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 10%;
     --muted-foreground: 0 0% 80%;
-    --accent: 0 100% 50%;
+    --accent: 0 82% 54%;
     --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -74,17 +74,17 @@
     background-clip: text;
   }
   
-  .glow-red {
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+   .glow-red {
+    box-shadow: 0 0 30px rgba(211, 47, 47, 0.4);
   }
   
   .glow-red-strong {
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+    box-shadow: 0 0 40px rgba(211, 47, 47, 0.6);
   }
   
   .border-glow {
-    border-color: rgba(255, 0, 0, 0.5);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    border-color: rgba(211, 47, 47, 0.5);
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.2);
   }
   
   .perspective-1000 {
@@ -120,12 +120,12 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff0000;
+  background: #d32f2f;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(255, 0, 0, 0.3);
+  background: rgba(211, 47, 47, 0.3);
   color: white;
 }
 
