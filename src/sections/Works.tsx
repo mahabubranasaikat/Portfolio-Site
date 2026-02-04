@@ -103,46 +103,75 @@ const Works = () => {
         }
       );
 
-      // Project cards cascade
-      projects.forEach((_, index) => {
-        const card = document.querySelector(`.project-card-${index}`);
-        
-        gsap.fromTo(
-          card,
-          { y: 100, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: 'expo.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
+       // Project cards cascade with advanced animations
+       projects.forEach((_, index) => {
+         const card = document.querySelector(`.project-card-${index}`);
+         const isOdd = index % 2 === 1;
+         
+         gsap.fromTo(
+           card,
+           { 
+             y: 100, 
+             opacity: 0,
+             x: isOdd ? 50 : -50,
+             rotateY: isOdd ? 25 : -25,
+           },
+           {
+             y: 0,
+             opacity: 1,
+             x: 0,
+             rotateY: 0,
+             duration: 0.9,
+             ease: 'expo.out',
+             scrollTrigger: {
+               trigger: card,
+               start: 'top 85%',
+               toggleActions: 'play none none reverse',
+             },
+           }
+         );
 
-        // Tags stagger pop
-        const tags = card?.querySelectorAll('.project-tag');
-        if (tags) {
-          gsap.fromTo(
-            tags,
-            { scale: 0 },
-            {
-              scale: 1,
-              duration: 0.3,
-              stagger: 0.1,
-              ease: 'elastic.out(1, 0.5)',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 70%',
-                toggleActions: 'play none none reverse',
-              },
-            }
-          );
-        }
-      });
+         // Icon animation
+         const icon = card?.querySelector('.project-icon');
+         if (icon) {
+           gsap.fromTo(
+             icon,
+             { scale: 0, rotate: -180 },
+             {
+               scale: 1,
+               rotate: 0,
+               duration: 0.8,
+               ease: 'back.out(1.7)',
+               scrollTrigger: {
+                 trigger: card,
+                 start: 'top 85%',
+                 toggleActions: 'play none none reverse',
+               },
+             }
+           );
+         }
+
+         // Tags stagger pop
+         const tags = card?.querySelectorAll('.project-tag');
+         if (tags) {
+           gsap.fromTo(
+             tags,
+             { scale: 0, opacity: 0 },
+             {
+               scale: 1,
+               opacity: 1,
+               duration: 0.4,
+               stagger: 0.08,
+               ease: 'elastic.out(1, 0.6)',
+               scrollTrigger: {
+                 trigger: card,
+                 start: 'top 70%',
+                 toggleActions: 'play none none reverse',
+               },
+             }
+           );
+         }
+       });
 
       // Stats animation
       gsap.fromTo(
@@ -213,43 +242,43 @@ const Works = () => {
                 key={project.title}
                 className={`project-card-${index} group grid lg:grid-cols-2 gap-8 lg:gap-16 items-center`}
               >
-                 {/* Icon/Image Section */}
-                 <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                   <div className="relative aspect-[4/3] bg-dark-100 rounded-xl overflow-hidden border border-white/10 group-hover:border-red/30 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-red/20">
-                    {/* Gradient Background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20`} />
-                    
-                    {/* Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${project.color} flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-500`}>
-                        <IconComponent className="w-12 h-12 text-white" />
-                      </div>
-                    </div>
+                  {/* Icon/Image Section */}
+                  <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <div className="relative aspect-[4/3] bg-dark-100 rounded-xl overflow-hidden border border-white/10 group-hover:border-red/40 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-red/30 hover-lift">
+                     {/* Gradient Background */}
+                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
+                     
+                     {/* Icon */}
+                     <div className="project-icon absolute inset-0 flex items-center justify-center">
+                       <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${project.color} flex items-center justify-center shadow-2xl transform group-hover:scale-125 transition-all duration-500 hover-glow`}>
+                         <IconComponent className="w-12 h-12 text-white group-hover:scale-110 transition-transform duration-300" />
+                       </div>
+                     </div>
 
-                    {/* Hover Overlay with Source Code */}
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                      {project.link ? (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-6 py-3 bg-red text-black font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 hover:bg-white"
-                        >
-                          <Github className="w-5 h-5" />
-                          <span>View Source Code</span>
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      ) : (
-                        <div className="flex items-center gap-2 px-6 py-3 bg-dark-200 border border-white/20 text-gray-400 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                          <span className="text-sm">Source code available on request</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Decorative corner */}
-                  <div className="absolute -bottom-3 -right-3 w-20 h-20 border-r-2 border-b-2 border-red/30 rounded-br-xl" />
-                </div>
+                     {/* Hover Overlay with Source Code */}
+                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+                       {project.link ? (
+                         <a
+                           href={project.link}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red to-red/80 text-black font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:shadow-lg hover:shadow-red/50 rounded-lg"
+                         >
+                           <Github className="w-5 h-5" />
+                           <span>View Source Code</span>
+                           <ExternalLink className="w-4 h-4" />
+                         </a>
+                       ) : (
+                         <div className="flex items-center gap-2 px-6 py-3 bg-dark-200 border border-white/20 text-gray-400 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 rounded-lg">
+                           <span className="text-sm">Source code available on request</span>
+                         </div>
+                       )}
+                     </div>
+                   </div>
+                   
+                   {/* Decorative corner - animated */}
+                   <div className="absolute -bottom-3 -right-3 w-20 h-20 border-r-2 border-b-2 border-red/30 rounded-br-xl group-hover:border-red/60 group-hover:w-28 group-hover:h-28 transition-all duration-500" />
+                 </div>
 
                  {/* Content */}
                  <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-1 lg:text-right' : ''}`}>
@@ -261,44 +290,44 @@ const Works = () => {
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white group-hover:text-red transition-colors leading-tight">
-                    {project.title}
-                  </h3>
+                   {/* Title */}
+                   <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white group-hover:text-red transition-all duration-300 leading-tight hover-lift">
+                     {project.title}
+                   </h3>
 
-                  {/* Description */}
-                  <p className="text-gray-400 leading-relaxed max-w-lg text-base sm:text-lg">
-                    {project.description}
-                  </p>
+                   {/* Description */}
+                   <p className="text-gray-400 leading-relaxed max-w-lg text-base sm:text-lg group-hover:text-gray-300 transition-colors duration-300">
+                     {project.description}
+                   </p>
 
-                   {/* Tags */}
-                   <div className={`flex flex-wrap gap-3 ${index % 2 === 1 ? 'lg:justify-end' : ''}`}>
-                    {project.tags.map((tag) => (
-                       <span
-                         key={tag}
-                         className="project-tag px-4 py-2 text-xs bg-dark-100 border border-white/10 rounded-full text-gray-300 group-hover:border-red/30 group-hover:text-red transition-all duration-300 hover:shadow-md hover:shadow-red/10"
-                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    {/* Tags */}
+                    <div className={`flex flex-wrap gap-3 ${index % 2 === 1 ? 'lg:justify-end' : ''}`}>
+                     {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="project-tag px-4 py-2 text-xs bg-gradient-to-br from-dark-100/70 to-dark-200/50 border border-white/10 rounded-full text-gray-300 group-hover:border-red/50 group-hover:text-red group-hover:shadow-lg group-hover:shadow-red/20 transition-all duration-300 hover:scale-110 hover-lift"
+                        >
+                         {tag}
+                       </span>
+                     ))}
+                   </div>
 
-                  {/* Source Code Link */}
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 text-red hover:text-white transition-colors group/link ${
-                        index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                      }`}
-                    >
-                      <Github className="w-5 h-5" />
-                      <span className="text-sm font-medium">View Source Code</span>
-                      <ArrowUpRight className="w-4 h-4 transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                    </a>
-                  )}
-                </div>
+                   {/* Source Code Link */}
+                   {project.link && (
+                     <a
+                       href={project.link}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className={`inline-flex items-center gap-2 text-red hover:text-white transition-all duration-300 group/link font-medium ${
+                         index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                       }`}
+                     >
+                       <Github className="w-5 h-5 group-hover/link:scale-125 transition-transform" />
+                       <span className="text-sm">View Source Code</span>
+                       <ArrowUpRight className="w-4 h-4 transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform duration-300" />
+                     </a>
+                   )}
+                 </div>
               </div>
             );
           })}

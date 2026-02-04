@@ -96,23 +96,30 @@ const Education = () => {
         }
       );
 
-      // Timeline items stagger animation
-      gsap.fromTo(
-        '.edu-item',
-        { x: (index) => (index % 2 === 0 ? -50 : 50), opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: timelineRef.current,
-            start: 'top 65%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
+       // Timeline items stagger animation with rotation
+       gsap.fromTo(
+         '.edu-item',
+         { 
+           x: (index) => (index % 2 === 0 ? -80 : 80), 
+           opacity: 0,
+           scale: 0.8,
+           rotateX: 60,
+         },
+         {
+           x: 0,
+           opacity: 1,
+           scale: 1,
+           rotateX: 0,
+           duration: 0.9,
+           stagger: 0.25,
+           ease: 'expo.out',
+           scrollTrigger: {
+             trigger: timelineRef.current,
+             start: 'top 65%',
+             toggleActions: 'play none none reverse',
+           },
+         }
+       );
 
       // Timeline dots animation
       gsap.fromTo(
@@ -200,90 +207,103 @@ const Education = () => {
                 <div className={`w-full lg:w-5/12 ${
                   index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'
                 }`}>
-                  <div className="edu-card group relative bg-gradient-to-br from-dark-100/75 to-dark-200/40 backdrop-blur-md border border-white/10 rounded-xl p-6 transition-all duration-500 hover:border-red/50 hover:shadow-2xl hover:shadow-red/25 hover:-translate-y-1 overflow-hidden">
-                    
-                    {/* Highlight Badge - Positioned Inside Box */}
-                    {edu.highlight && (
-                      <div className="absolute top-3 right-3 px-2.5 py-1 bg-gradient-to-r from-red to-amber-700 text-black text-xs font-bold rounded-md shadow-md text-center min-w-max">
-                        CURRENT
-                      </div>
-                    )}
+                   <div className="edu-card group relative bg-gradient-to-br from-dark-100/75 to-dark-200/40 backdrop-blur-md border border-white/10 rounded-xl p-6 transition-all duration-500 hover:border-red/60 hover:shadow-2xl hover:shadow-red/30 hover:-translate-y-2 overflow-hidden hover-lift">
+                     
+                     {/* Highlight Badge - Positioned Inside Box */}
+                     {edu.highlight && (
+                       <div className="absolute top-3 right-3 px-2.5 py-1 bg-gradient-to-r from-red to-amber-700 text-black text-xs font-bold rounded-md shadow-lg text-center min-w-max animate-pulse-scale">
+                         CURRENT
+                       </div>
+                     )}
 
-                    {/* Background Glow Effect */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                     {/* Background Glow Effect */}
+                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                    {/* Top border accent animation */}
-                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red/0 to-transparent group-hover:via-red/50 transition-all duration-500" />
+                     {/* Animated Top border */}
+                     <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red/0 to-transparent group-hover:via-red/80 transition-all duration-500" />
 
-                    {/* Content */}
-                    <div className="relative z-10 space-y-3">
-                      {/* Degree */}
-                      <div>
-                        <h3 className="font-display text-lg sm:text-xl text-white group-hover:text-red transition-colors duration-400 leading-snug">
-                          {edu.degree}
-                        </h3>
-                      </div>
+                     {/* Rotating corner accent */}
+                     <div className="absolute -top-1 -right-1 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                       <div className="animate-spin" style={{ animationDuration: '6s' }}>
+                         <div className="w-full h-full border-t-2 border-r-2 border-red/40 rounded-full" />
+                       </div>
+                     </div>
 
-                      {/* Institution and Department */}
-                      <div className="space-y-2">
-                        <div className="flex items-start gap-2">
-                          <div className="w-8 h-8 bg-red/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-red/25 transition-colors duration-300">
-                            <School className="w-4 h-4 text-red" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-gray-300 text-sm">{edu.institution}</p>
-                            <p className="text-gray-400 text-xs">{edu.department}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 ml-0">
-                          <div className="w-8 h-8 bg-red/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-red/25 transition-colors duration-300">
-                            <MapPin className="w-4 h-4 text-red" />
-                          </div>
-                          <p className="text-gray-300 text-sm font-medium">{edu.location}</p>
-                        </div>
-                      </div>
+                     {/* Content */}
+                     <div className="relative z-10 space-y-3">
+                       {/* Degree */}
+                       <div>
+                         <h3 className="font-display text-lg sm:text-xl text-white group-hover:text-red transition-all duration-400 leading-snug">
+                           {edu.degree}
+                         </h3>
+                       </div>
 
-                      {/* Duration and Status - Horizontal Layout */}
-                      <div className="flex flex-wrap items-center gap-4 text-xs pt-2">
-                        <div className="flex items-center gap-1.5 text-gray-300">
-                          <Calendar className="w-4 h-4 text-red flex-shrink-0" />
-                          <span className="font-medium">{edu.duration}</span>
-                        </div>
-                        
-                        <div className="flex items-center gap-1.5 text-red font-medium">
-                          <Award className="w-4 h-4 flex-shrink-0" />
-                          <span>{edu.status}</span>
-                        </div>
-                      </div>
-                    </div>
+                       {/* Institution and Department */}
+                       <div className="space-y-2">
+                         <div className="flex items-start gap-2 group-hover:translate-x-1 transition-transform duration-300">
+                           <div className="w-8 h-8 bg-red/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-red/30 transition-all duration-300 group-hover:scale-110">
+                             <School className="w-4 h-4 text-red" />
+                           </div>
+                           <div>
+                             <p className="font-medium text-gray-300 text-sm group-hover:text-white transition-colors duration-300">{edu.institution}</p>
+                             <p className="text-gray-400 text-xs group-hover:text-gray-300 transition-colors duration-300">{edu.department}</p>
+                           </div>
+                         </div>
+                         <div className="flex items-center gap-2 ml-0 group-hover:translate-x-1 transition-transform duration-300">
+                           <div className="w-8 h-8 bg-red/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-red/30 transition-all duration-300 group-hover:scale-110">
+                             <MapPin className="w-4 h-4 text-red" />
+                           </div>
+                           <p className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors duration-300">{edu.location}</p>
+                         </div>
+                       </div>
 
-                    {/* Corner Accent - Smaller and Subtle */}
-                    <div className="absolute -bottom-0.5 -right-0.5 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-xl group-hover:border-red/50 transition-colors duration-500 opacity-0 group-hover:opacity-100" />
-                    <div className="absolute -top-0.5 -left-0.5 w-10 h-10 border-l-2 border-t-2 border-red/10 rounded-tl-xl group-hover:border-red/30 transition-colors duration-500" />
-                  </div>
+                       {/* Duration and Status - Horizontal Layout */}
+                       <div className="flex flex-wrap items-center gap-4 text-xs pt-2">
+                         <div className="flex items-center gap-1.5 text-gray-300 group-hover:text-white transition-colors duration-300">
+                           <Calendar className="w-4 h-4 text-red flex-shrink-0" />
+                           <span className="font-medium">{edu.duration}</span>
+                         </div>
+                         
+                         <div className="flex items-center gap-1.5 text-red font-medium group-hover:text-white transition-colors duration-300">
+                           <Award className="w-4 h-4 flex-shrink-0" />
+                           <span>{edu.status}</span>
+                         </div>
+                       </div>
+                     </div>
+
+                     {/* Corner Accents - Animated */}
+                     <div className="absolute -bottom-0.5 -right-0.5 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-xl group-hover:border-red/70 transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:w-16 group-hover:h-16" />
+                     <div className="absolute -top-0.5 -left-0.5 w-10 h-10 border-l-2 border-t-2 border-red/10 rounded-tl-xl group-hover:border-red/50 transition-all duration-500 group-hover:w-14 group-hover:h-14" />
+                   </div>
                 </div>
 
-                {/* Center Timeline Dot - Desktop Only */}
-                <div className="hidden lg:flex lg:w-2/12 justify-center">
-                  <div className="edu-dot relative z-20">
-                    {/* Main Dot */}
-                    <div className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-red/50 border-4 border-black`}>
-                      <edu.icon className="w-8 h-8 text-white" />
-                    </div>
+                 {/* Center Timeline Dot - Desktop Only */}
+                 <div className="hidden lg:flex lg:w-2/12 justify-center group">
+                   <div className="edu-dot relative z-20">
+                     {/* Main Dot */}
+                     <div className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg transition-all duration-500 hover-lift hover-glow border-4 border-black group-hover:scale-125`}>
+                       <edu.icon className="w-8 h-8 text-white group-hover:rotate-12 transition-transform duration-500" />
+                     </div>
 
-                    {/* Pulse Ring on Hover */}
-                    <div className="absolute inset-0 rounded-full border-2 border-red/0 group-hover:border-red/40 scale-125 transition-all duration-500 group-hover:scale-150" />
-                  </div>
-                </div>
+                     {/* Outer Pulsing Ring */}
+                     <div className="absolute inset-0 rounded-full border-2 border-red/20 group-hover:border-red/60 scale-110 transition-all duration-500 group-hover:scale-140 group-hover:animate-pulse" />
 
-                {/* Mobile Timeline Dot */}
-                <div className="lg:hidden flex-shrink-0">
-                  <div className="edu-dot relative z-20">
-                    <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg border-4 border-black transition-all duration-500 group-hover:scale-110`}>
-                      <edu.icon className="w-7 h-7 text-white" />
-                    </div>
-                  </div>
-                </div>
+                     {/* Inner rotating ring */}
+                     <div className="absolute inset-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                       border: '2px solid rgba(211, 47, 47, 0.3)',
+                       animation: 'spin 4s linear infinite',
+                     }} />
+                   </div>
+                 </div>
+
+                 {/* Mobile Timeline Dot */}
+                 <div className="lg:hidden flex-shrink-0 group">
+                   <div className="edu-dot relative z-20">
+                     <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg border-4 border-black transition-all duration-500 group-hover:scale-125 group-hover:shadow-lg group-hover:shadow-red/50`}>
+                       <edu.icon className="w-7 h-7 text-white" />
+                     </div>
+                   </div>
+                 </div>
               </div>
             ))}
           </div>

@@ -35,24 +35,25 @@ const Contact = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // CTA Headline word-by-word
-      gsap.fromTo(
-        '.cta-word',
-        { y: 80, rotateX: 60, opacity: 0 },
-        {
-          y: 0,
-          rotateX: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
+       // CTA Headline word-by-word with enhanced animation
+       gsap.fromTo(
+         '.cta-word',
+         { y: 100, rotateX: 90, opacity: 0, scale: 0.8 },
+         {
+           y: 0,
+           rotateX: 0,
+           opacity: 1,
+           scale: 1,
+           duration: 0.8,
+           stagger: 0.15,
+           ease: 'expo.out',
+           scrollTrigger: {
+             trigger: sectionRef.current,
+             start: 'top 70%',
+             toggleActions: 'play none none reverse',
+           },
+         }
+       );
 
       // Red accent
       gsap.fromTo(
@@ -268,25 +269,25 @@ const Contact = () => {
        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-16 lg:px-24">
          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32">
           
-           {/* Left - CTA */}
-           <div className="space-y-10">
-            {/* Headline */}
-            <div className="space-y-0 perspective-1000">
-              <h2 className="font-display text-display-2 sm:text-display-1 text-white leading-none">
-                <span className="cta-word inline-block">LET'S</span>{' '}
-                <span className="cta-word inline-block">WORK</span>
-              </h2>
-              <h2 className="font-display text-display-2 sm:text-display-1 text-white leading-none">
-                <span className="cta-word inline-block">TOGETHER</span>
-              </h2>
-            </div>
+            {/* Left - CTA */}
+            <div className="space-y-10">
+             {/* Headline */}
+             <div className="space-y-0 perspective-1000">
+               <h2 className="font-display text-display-2 sm:text-display-1 text-white leading-none">
+                 <span className="cta-word inline-block text-gradient animate-gradient-shift">LET'S</span>{' '}
+                 <span className="cta-word inline-block">WORK</span>
+               </h2>
+               <h2 className="font-display text-display-2 sm:text-display-1 text-white leading-none">
+                 <span className="cta-word inline-block text-stroke">TOGETHER</span>
+               </h2>
+             </div>
 
-             <div className="contact-accent w-16 h-1 bg-red origin-left" />
+              <div className="contact-accent w-16 h-1 bg-gradient-to-r from-red via-red to-red/30 origin-left" />
 
-             <p className="cta-subtext text-gray-400 text-lg max-w-md leading-relaxed">
-              Have a project in mind? Let's create something amazing together. 
-              I'm always open to discussing new opportunities and ideas.
-            </p>
+              <p className="cta-subtext text-gray-400 text-lg max-w-md leading-relaxed hover:text-gray-300 transition-colors duration-300">
+               Have a project in mind? Let's create something amazing together. 
+               I'm always open to discussing new opportunities and ideas.
+             </p>
 
              {/* Status Messages */}
              {submitStatus.type !== 'idle' && (
@@ -314,128 +315,135 @@ const Contact = () => {
                </div>
              )}
 
-             {/* Contact Form */}
-             <form onSubmit={handleSubmit} className="space-y-6 pt-8 border-t border-white/10">
-              <div className="grid sm:grid-cols-2 gap-4">
-               <div className="space-y-2">
-                   <label className="text-sm text-gray-500">Name</label>
-                   <input
-                     type="text"
-                     name="name"
-                     value={formData.name}
-                     onChange={handleInputChange}
-                     className={`w-full bg-transparent border-b py-3 text-white focus:outline-none transition-colors duration-300 ${
-                       errors.name
-                         ? 'border-red/50 focus:border-red'
-                         : 'border-white/20 focus:border-red'
-                     }`}
-                     placeholder="Your name"
-                     required
-                   />
-                   {errors.name && <p className="text-xs text-red mt-1">{errors.name}</p>}
-                </div>
-                 <div className="space-y-2">
-                   <label className="text-sm text-gray-500">Email</label>
-                   <input
-                     type="email"
-                     name="email"
-                     value={formData.email}
-                     onChange={handleInputChange}
-                     className={`w-full bg-transparent border-b py-3 text-white focus:outline-none transition-colors duration-300 ${
-                       errors.email
-                         ? 'border-red/50 focus:border-red'
-                         : 'border-white/20 focus:border-red'
-                     }`}
-                     placeholder="your@email.com"
-                     required
-                   />
-                   {errors.email && <p className="text-xs text-red mt-1">{errors.email}</p>}
-                </div>
-              </div>
-               <div className="space-y-2">
-                 <label className="text-sm text-gray-500">Message</label>
-                 <textarea
-                   name="message"
-                   value={formData.message}
-                   onChange={handleInputChange}
-                   rows={4}
-                   className={`w-full bg-transparent border-b py-3 text-white focus:outline-none transition-colors duration-300 resize-none ${
-                     errors.message
-                       ? 'border-red/50 focus:border-red'
-                       : 'border-white/20 focus:border-red'
-                   }`}
-                   placeholder="Tell me about your project..."
-                   required
-                 />
-                 {errors.message && <p className="text-xs text-red mt-1">{errors.message}</p>}
-              </div>
-               <button
-                 type="submit"
-                 disabled={submitStatus.type === 'loading'}
-                 className="group flex items-center gap-2 px-8 py-3 border border-white/20 text-white hover:bg-red hover:text-black hover:border-red transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-               >
-                 <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                 <span className="text-sm font-medium">
-                   {submitStatus.type === 'loading' ? 'Sending...' : 'Send Message'}
-                 </span>
-               </button>
-             </form>
+              {/* Contact Form */}
+              <form onSubmit={handleSubmit} className="space-y-6 pt-8 border-t border-white/10">
+               <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2 group">
+                    <label className="text-sm text-gray-500 group-hover:text-gray-300 transition-colors">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className={`w-full bg-transparent border-b-2 py-3 text-white placeholder-gray-600 focus:outline-none transition-all duration-300 group-hover:border-red/20 ${
+                        errors.name
+                          ? 'border-red/50 focus:border-red'
+                          : 'border-white/20 focus:border-red'
+                      }`}
+                      placeholder="Your name"
+                      required
+                    />
+                    {errors.name && <p className="text-xs text-red mt-1 animate-pulse">{errors.name}</p>}
+                 </div>
+                  <div className="space-y-2 group">
+                    <label className="text-sm text-gray-500 group-hover:text-gray-300 transition-colors">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`w-full bg-transparent border-b-2 py-3 text-white placeholder-gray-600 focus:outline-none transition-all duration-300 group-hover:border-red/20 ${
+                        errors.email
+                          ? 'border-red/50 focus:border-red'
+                          : 'border-white/20 focus:border-red'
+                      }`}
+                      placeholder="your@email.com"
+                      required
+                    />
+                    {errors.email && <p className="text-xs text-red mt-1 animate-pulse">{errors.email}</p>}
+                 </div>
+               </div>
+                <div className="space-y-2 group">
+                  <label className="text-sm text-gray-500 group-hover:text-gray-300 transition-colors">Message</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className={`w-full bg-transparent border-b-2 py-3 text-white placeholder-gray-600 focus:outline-none transition-all duration-300 resize-none group-hover:border-red/20 ${
+                      errors.message
+                        ? 'border-red/50 focus:border-red'
+                        : 'border-white/20 focus:border-red'
+                    }`}
+                    placeholder="Tell me about your project..."
+                    required
+                  />
+                  {errors.message && <p className="text-xs text-red mt-1 animate-pulse">{errors.message}</p>}
+               </div>
+                <button
+                  type="submit"
+                  disabled={submitStatus.type === 'loading'}
+                  className="group flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-red to-red/80 text-black font-medium hover:from-white hover:to-white/80 transition-all duration-300 rounded-lg hover:shadow-lg hover:shadow-red/50 disabled:opacity-50 disabled:cursor-not-allowed hover-lift"
+                >
+                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-0 transition-transform" />
+                  <span className="text-sm font-medium">
+                    {submitStatus.type === 'loading' ? 'Sending...' : 'Send Message'}
+                  </span>
+                </button>
+              </form>
            </div>
 
-           {/* Right - Contact Info */}
-           <div className="relative">
-             <div className="contact-card relative bg-dark-100 border border-white/10 rounded-xl p-10 space-y-10 hover:border-red/20 hover:shadow-lg hover:shadow-red/10 transition-all duration-500">
-              <h3 className="font-display text-2xl text-white">Contact Information</h3>
-              
-              <div className="space-y-6">
-                 {contactInfo.map(({ icon: Icon, label, value, href }) => (
-                   <a
-                     key={label}
-                     href={href}
-                     className="contact-item group flex items-start gap-4 cursor-pointer hover:opacity-80 transition-opacity"
-                   >
-                     <div className="w-12 h-12 bg-dark-200 rounded-lg flex items-center justify-center group-hover:bg-red/10 transition-colors duration-300 flex-shrink-0">
-                       <Icon className="w-5 h-5 text-gray-400 group-hover:text-red transition-colors duration-300" />
-                     </div>
-                     <div>
-                       <div className="text-sm text-gray-500">{label}</div>
-                       <div className="text-white group-hover:text-red transition-colors duration-300">{value}</div>
-                     </div>
-                   </a>
-                 ))}
-              </div>
+            {/* Right - Contact Info */}
+            <div className="relative group">
+              <div className="contact-card relative bg-gradient-to-br from-dark-100/70 to-dark-200/40 backdrop-blur-md border border-white/10 rounded-xl p-10 space-y-10 hover:border-red/40 hover:shadow-2xl hover:shadow-red/30 transition-all duration-500 hover-lift overflow-hidden">
+               {/* Background glow */}
+               <div className="absolute inset-0 bg-gradient-to-br from-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
 
-              {/* Decorative Arrow */}
-              <svg
-                className="absolute -bottom-4 -right-4 w-24 h-24 text-red/30"
-                viewBox="0 0 100 100"
-                fill="none"
-              >
-                <path
-                  className="arrow-decoration"
-                  d="M10 90 Q 50 90, 50 50 Q 50 10, 90 10"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeDasharray="100"
-                  strokeDashoffset="100"
-                  fill="none"
-                />
-                <polygon
-                  points="85,5 95,10 85,15"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
+               <h3 className="font-display text-2xl text-white relative z-10">Contact Information</h3>
+               
+               <div className="space-y-6 relative z-10">
+                  {contactInfo.map(({ icon: Icon, label, value, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      className="contact-item group flex items-start gap-4 cursor-pointer transition-all duration-300 hover:-translate-x-1"
+                    >
+                      <div className="w-12 h-12 bg-gradient-to-br from-dark-200 to-dark-100 rounded-lg flex items-center justify-center group-hover:from-red/20 group-hover:to-red/5 transition-all duration-300 flex-shrink-0 group-hover:scale-110 hover-glow">
+                        <Icon className="w-5 h-5 text-gray-400 group-hover:text-red transition-all duration-300 group-hover:rotate-12" />
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-500 group-hover:text-gray-300 transition-colors duration-300">{label}</div>
+                        <div className="text-white font-medium group-hover:text-red group-hover:translate-x-1 transition-all duration-300">{value}</div>
+                      </div>
+                    </a>
+                  ))}
+               </div>
 
-            {/* Availability Badge */}
-            <div className="mt-8 flex items-center gap-3">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </span>
-              <span className="text-gray-400 text-sm">Available for new projects</span>
-            </div>
-          </div>
+               {/* Decorative Arrow */}
+               <svg
+                 className="absolute -bottom-4 -right-4 w-24 h-24 text-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                 viewBox="0 0 100 100"
+                 fill="none"
+               >
+                 <path
+                   className="arrow-decoration"
+                   d="M10 90 Q 50 90, 50 50 Q 50 10, 90 10"
+                   stroke="currentColor"
+                   strokeWidth="2"
+                   strokeDasharray="100"
+                   strokeDashoffset="100"
+                   fill="none"
+                 />
+                 <polygon
+                   points="85,5 95,10 85,15"
+                   fill="currentColor"
+                 />
+               </svg>
+
+               {/* Corner accents */}
+               <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+               <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+             </div>
+
+             {/* Availability Badge */}
+             <div className="mt-8 group flex items-center gap-3 px-4 py-3 bg-dark-100/50 border border-green-500/20 rounded-lg hover:border-green-500/50 transition-all duration-300">
+               <span className="relative flex h-3 w-3">
+                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+               </span>
+               <span className="text-gray-400 group-hover:text-gray-300 text-sm transition-colors duration-300">Available for new projects</span>
+             </div>
+           </div>
         </div>
       </div>
     </section>
