@@ -225,15 +225,22 @@ const Education = () => {
                       </div>
 
                       {/* Institution and Department */}
-                      <div className="space-y-1.5">
-                        <div className="flex items-start gap-1.5">
-                          <MapPin className="w-4 h-4 text-red flex-shrink-0 mt-0.5" />
+                      <div className="space-y-2">
+                        <div className="flex items-start gap-2">
+                          <div className="w-8 h-8 bg-red/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-red/25 transition-colors duration-300">
+                            <School className="w-4 h-4 text-red" />
+                          </div>
                           <div>
                             <p className="font-medium text-gray-300 text-sm">{edu.institution}</p>
                             <p className="text-gray-400 text-xs">{edu.department}</p>
                           </div>
                         </div>
-                        <p className="text-gray-400 text-xs ml-5.5">{edu.location}</p>
+                        <div className="flex items-center gap-2 ml-0">
+                          <div className="w-8 h-8 bg-red/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-red/25 transition-colors duration-300">
+                            <MapPin className="w-4 h-4 text-red" />
+                          </div>
+                          <p className="text-gray-300 text-sm font-medium">{edu.location}</p>
+                        </div>
                       </div>
 
                       {/* Duration and Status - Horizontal Layout */}
