@@ -1,22 +1,36 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, MapPin, Phone, Send, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import axios from 'axios';
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface FormState {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface SubmitStatus {
+  type: 'idle' | 'loading' | 'success' | 'error';
+  message?: string;
+}
+
 const Contact = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormState>({
     name: '',
     email: '',
     message: '',
   });
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>({ type: 'idle' });
+  const [errors, setErrors] = useState<Partial<FormState>>({});
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'mahabubranasaikat@gmail.com' },
-    { icon: MapPin, label: 'Location', value: 'Sylhet, Bangladesh' },
-    { icon: Phone, label: 'Phone', value: '+8801753610727' },
+    { icon: Mail, label: 'Email', value: 'mahabubranasaikat@gmail.com', href: 'mailto:mahabubranasaikat@gmail.com' },
+    { icon: MapPin, label: 'Location', value: 'Sylhet, Bangladesh', href: '#' },
+    { icon: Phone, label: 'Phone', value: '+8801753610727', href: 'tel:+8801753610727' },
   ];
 
   useEffect(() => {
@@ -146,11 +160,87 @@ const Contact = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = (): boolean => {
+    const newErrors: Partial<FormState> = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setSubmitStatus({ type: 'loading' });
+
+    try {
+      // Using Formspree endpoint
+      const formspreeId = 'xdkozbnq'; // Replace with your actual Formspree ID
+      const response = await axios.post(
+        `https://formspree.io/f/${formspreeId}`,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New message from ${formData.name}`,
+          _replyto: formData.email,
+        }
+      );
+
+      if (response.status === 200) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.',
+        });
+        setFormData({ name: '', email: '', message: '' });
+        setErrors({});
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus({ type: 'idle' });
+        }, 5000);
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again or contact me directly via email.',
+      });
+      console.error('Form submission error:', error);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof FormState]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
   };
 
   return (
@@ -198,14 +288,31 @@ const Contact = () => {
               I'm always open to discussing new opportunities and ideas.
             </p>
 
-             {/* CTA Button */}
-             <a
-               href="mailto:hello@portfolio.com"
-               className="cta-button group inline-flex items-center gap-3 px-8 py-4 bg-red text-black font-medium hover:shadow-lg hover:shadow-red/50 transition-all duration-300 hover:scale-105"
-             >
-              <span>Get In Touch</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-            </a>
+             {/* Status Messages */}
+             {submitStatus.type !== 'idle' && (
+               <div className={`flex items-start gap-3 p-4 rounded-lg transition-all duration-300 ${
+                 submitStatus.type === 'success'
+                   ? 'bg-green-500/10 border border-green-500/30'
+                   : submitStatus.type === 'error'
+                   ? 'bg-red/10 border border-red/30'
+                   : 'bg-blue-500/10 border border-blue-500/30'
+               }`}>
+                 {submitStatus.type === 'success' ? (
+                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                 ) : submitStatus.type === 'error' ? (
+                   <AlertCircle className="w-5 h-5 text-red flex-shrink-0 mt-0.5" />
+                 ) : null}
+                 <p className={`text-sm ${
+                   submitStatus.type === 'success'
+                     ? 'text-green-300'
+                     : submitStatus.type === 'error'
+                     ? 'text-red/80'
+                     : 'text-blue-300'
+                 }`}>
+                   {submitStatus.message || 'Sending...'}
+                 </p>
+               </div>
+             )}
 
              {/* Contact Form */}
              <form onSubmit={handleSubmit} className="space-y-6 pt-8 border-t border-white/10">
@@ -214,45 +321,66 @@ const Contact = () => {
                    <label className="text-sm text-gray-500">Name</label>
                    <input
                      type="text"
+                     name="name"
                      value={formData.name}
-                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                     className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:border-red focus:outline-none transition-colors duration-300"
+                     onChange={handleInputChange}
+                     className={`w-full bg-transparent border-b py-3 text-white focus:outline-none transition-colors duration-300 ${
+                       errors.name
+                         ? 'border-red/50 focus:border-red'
+                         : 'border-white/20 focus:border-red'
+                     }`}
                      placeholder="Your name"
                      required
                    />
+                   {errors.name && <p className="text-xs text-red mt-1">{errors.name}</p>}
                 </div>
                  <div className="space-y-2">
                    <label className="text-sm text-gray-500">Email</label>
                    <input
                      type="email"
+                     name="email"
                      value={formData.email}
-                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                     className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:border-red focus:outline-none transition-colors duration-300"
+                     onChange={handleInputChange}
+                     className={`w-full bg-transparent border-b py-3 text-white focus:outline-none transition-colors duration-300 ${
+                       errors.email
+                         ? 'border-red/50 focus:border-red'
+                         : 'border-white/20 focus:border-red'
+                     }`}
                      placeholder="your@email.com"
                      required
                    />
+                   {errors.email && <p className="text-xs text-red mt-1">{errors.email}</p>}
                 </div>
               </div>
                <div className="space-y-2">
                  <label className="text-sm text-gray-500">Message</label>
                  <textarea
+                   name="message"
                    value={formData.message}
-                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                   onChange={handleInputChange}
                    rows={4}
-                   className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:border-red focus:outline-none transition-colors duration-300 resize-none"
+                   className={`w-full bg-transparent border-b py-3 text-white focus:outline-none transition-colors duration-300 resize-none ${
+                     errors.message
+                       ? 'border-red/50 focus:border-red'
+                       : 'border-white/20 focus:border-red'
+                   }`}
                    placeholder="Tell me about your project..."
                    required
                  />
+                 {errors.message && <p className="text-xs text-red mt-1">{errors.message}</p>}
               </div>
                <button
                  type="submit"
-                 className="group flex items-center gap-2 px-8 py-3 border border-white/20 text-white hover:bg-red hover:text-black hover:border-red transition-all duration-300 font-medium"
+                 disabled={submitStatus.type === 'loading'}
+                 className="group flex items-center gap-2 px-8 py-3 border border-white/20 text-white hover:bg-red hover:text-black hover:border-red transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                >
-                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                <span className="text-sm font-medium">Send Message</span>
-              </button>
-            </form>
-          </div>
+                 <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                 <span className="text-sm font-medium">
+                   {submitStatus.type === 'loading' ? 'Sending...' : 'Send Message'}
+                 </span>
+               </button>
+             </form>
+           </div>
 
            {/* Right - Contact Info */}
            <div className="relative">
@@ -260,16 +388,20 @@ const Contact = () => {
               <h3 className="font-display text-2xl text-white">Contact Information</h3>
               
               <div className="space-y-6">
-                 {contactInfo.map(({ icon: Icon, label, value }) => (
-                   <div key={label} className="contact-item flex items-start gap-4 group">
-                     <div className="w-12 h-12 bg-dark-200 rounded-lg flex items-center justify-center group-hover:bg-red/10 transition-colors duration-300">
+                 {contactInfo.map(({ icon: Icon, label, value, href }) => (
+                   <a
+                     key={label}
+                     href={href}
+                     className="contact-item group flex items-start gap-4 cursor-pointer hover:opacity-80 transition-opacity"
+                   >
+                     <div className="w-12 h-12 bg-dark-200 rounded-lg flex items-center justify-center group-hover:bg-red/10 transition-colors duration-300 flex-shrink-0">
                        <Icon className="w-5 h-5 text-gray-400 group-hover:text-red transition-colors duration-300" />
                      </div>
                      <div>
                        <div className="text-sm text-gray-500">{label}</div>
                        <div className="text-white group-hover:text-red transition-colors duration-300">{value}</div>
                      </div>
-                   </div>
+                   </a>
                  ))}
               </div>
 
@@ -311,3 +443,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

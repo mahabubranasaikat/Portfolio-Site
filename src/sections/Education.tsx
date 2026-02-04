@@ -11,19 +11,21 @@ const Education = () => {
 
   const educationData = [
     {
-      degree: 'B.Sc. Software Engineering',
-      institution: 'SUST - Shahjalal University',
-      location: 'Sylhet',
+      degree: 'B.Sc. in Software Engineering',
+      institution: 'Shahjalal University of Science and Technology (SUST)',
+      department: 'Institute of Information and Communication Technology (IICT)',
+      location: 'Sylhet, Bangladesh',
       duration: '2023 – Present',
-      status: '3rd Year',
+      status: '3rd Year (Current)',
       icon: GraduationCap,
       color: 'from-red to-orange-500',
       highlight: true,
     },
     {
-      degree: 'Higher Secondary Certificate',
-      institution: 'Govt. Shah Sultan College',
-      location: 'Bogra',
+      degree: 'Higher Secondary Certificate (H.S.C.)',
+      institution: 'Government Shah Sultan College',
+      department: 'Science Group',
+      location: 'Bogra, Bangladesh',
       duration: '2019 – 2021',
       status: 'GPA: 5.0',
       icon: BookOpen,
@@ -31,9 +33,10 @@ const Education = () => {
       highlight: false,
     },
     {
-      degree: 'Secondary School Certificate',
+      degree: 'Secondary School Certificate (S.S.C.)',
       institution: 'Naogaon Zilla School',
-      location: 'Naogaon',
+      department: 'Science Group',
+      location: 'Naogaon, Bangladesh',
       duration: '2014 – 2019',
       status: 'GPA: 5.0',
       icon: School,
@@ -214,25 +217,27 @@ const Education = () => {
 
                     {/* Content */}
                     <div className="relative z-10 space-y-3">
-                      {/* Degree - More Compact */}
+                      {/* Degree */}
                       <div>
                         <h3 className="font-display text-lg sm:text-xl text-white group-hover:text-red transition-colors duration-400 leading-snug">
                           {edu.degree}
                         </h3>
                       </div>
 
-                      {/* Institution and Location - Inline on Desktop */}
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-gray-300 text-sm">
-                        <div className="flex items-center gap-1.5">
-                          <MapPin className="w-4 h-4 text-red flex-shrink-0" />
-                          <p className="font-medium">{edu.institution}</p>
+                      {/* Institution and Department */}
+                      <div className="space-y-1.5">
+                        <div className="flex items-start gap-1.5">
+                          <MapPin className="w-4 h-4 text-red flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-gray-300 text-sm">{edu.institution}</p>
+                            <p className="text-gray-400 text-xs">{edu.department}</p>
+                          </div>
                         </div>
-                        <span className="hidden sm:inline text-gray-500">•</span>
-                        <p className="text-gray-400">{edu.location}</p>
+                        <p className="text-gray-400 text-xs ml-5.5">{edu.location}</p>
                       </div>
 
                       {/* Duration and Status - Horizontal Layout */}
-                      <div className="flex flex-wrap items-center gap-4 text-xs pt-1">
+                      <div className="flex flex-wrap items-center gap-4 text-xs pt-2">
                         <div className="flex items-center gap-1.5 text-gray-300">
                           <Calendar className="w-4 h-4 text-red flex-shrink-0" />
                           <span className="font-medium">{edu.duration}</span>

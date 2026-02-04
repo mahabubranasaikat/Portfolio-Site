@@ -3,10 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    
+    <!-- Basic SEO -->
+    <title>Md Mahabub Rana Saikat | Software Engineer & Full Stack Developer</title>
+    <meta name="description" content="Professional portfolio of Md Mahabub Rana Saikat, a Software Engineering student from SUST specialized in building scalable applications and elegant solutions." />
+    <meta name="keywords" content="software engineer, full stack developer, web development, backend development, Bangladesh" />
+    <meta name="author" content="Md Mahabub Rana Saikat" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mahabubranasaikat.com" />
+    <meta property="og:title" content="Md Mahabub Rana Saikat | Software Engineer" />
+    <meta property="og:description" content="Professional portfolio of a Software Engineering student from SUST, specialized in building scalable applications." />
+    <meta property="og:image" content="/hero-profile.jpg" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Cards -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mahabubranasaikat.com" />
+    <meta property="twitter:title" content="Md Mahabub Rana Saikat | Software Engineer" />
+    <meta property="twitter:description" content="Professional portfolio of a Software Engineering student from SUST." />
+    <meta property="twitter:image" content="/hero-profile.jpg" />
+    <meta name="twitter:creator" content="@mahbubrnasaikat" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mahabubranasaikat.com" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%23ff3b30'>S</text></svg>" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="/hero-profile.jpg" />
+    
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Md Mahabub Rana Saikat",
+      "url": "https://mahabubranasaikat.com",
+      "image": "/hero-profile.jpg",
+      "jobTitle": "Software Engineer",
+      "email": "mahabubranasaikat@gmail.com",
+      "telephone": "+8801753610727",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sylhet",
+        "addressCountry": "Bangladesh"
+      },
+      "sameAs": [
+        "https://github.com/mahabubranasaikat",
+        "https://linkedin.com/in/mahabubranasaikat",
+        "https://twitter.com/mahbubrnasaikat"
+      ]
+    }
+    </script>
   </body>
 </html>
