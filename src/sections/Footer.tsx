@@ -25,45 +25,7 @@ const Footer = () => {
   ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Footer slide up
-      gsap.fromTo(
-        footerRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.4,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 95%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Social links
-      gsap.fromTo(
-        '.footer-social',
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.3,
-          stagger: 0.05,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-    }, footerRef);
-
-    return () => ctx.revert();
+    // Keep footer permanently visible without hiding
   }, []);
 
   const scrollToTop = () => {
@@ -87,10 +49,10 @@ const Footer = () => {
           
           {/* Brand */}
           <div className="space-y-5 max-w-md">
-            <div className="font-display text-3xl text-slate-900 dark:text-white tracking-wider hover:text-red transition-colors duration-300">
+            <div className="font-display text-3xl text-slate-950 dark:text-white tracking-wider hover:text-red transition-colors duration-300">
               Saikat
             </div>
-            <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed hover:text-slate-800 dark:hover:text-gray-300 transition-colors duration-300">
+            <p className="text-slate-700 dark:text-gray-300 text-sm leading-relaxed font-medium">
               Software engineering student passionate about creating scalable, elegant, and real-world modern systems.
             </p>
             
@@ -102,10 +64,10 @@ const Footer = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer-social group w-10 h-10 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg flex items-center justify-center hover:bg-red dark:hover:bg-red transition-all duration-300 hover:shadow-lg hover:shadow-red/40 hover:-translate-y-0.5 shadow-xs"
+                  className="group w-10 h-10 bg-white dark:bg-white/5 border border-slate-300/80 dark:border-white/10 rounded-lg flex items-center justify-center hover:bg-red dark:hover:bg-red transition-all duration-300 hover:shadow-lg hover:shadow-red/40 hover:-translate-y-0.5 shadow-sm"
                   aria-label={label}
                 >
-                  <Icon className="w-4 h-4 text-slate-700 dark:text-gray-300 group-hover:text-white transition-all duration-300 group-hover:scale-110" />
+                  <Icon className="w-4 h-4 text-slate-800 dark:text-gray-200 group-hover:text-white transition-all duration-300 group-hover:scale-110" />
                 </a>
               ))}
             </div>
@@ -113,7 +75,7 @@ const Footer = () => {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="font-display text-lg text-slate-900 dark:text-white tracking-wide">Quick Links</h4>
+            <h4 className="font-display text-lg text-slate-950 dark:text-white tracking-wide font-bold">Quick Links</h4>
             <nav className="flex flex-wrap md:flex-col gap-3 md:gap-2.5">
               {navLinks.map(({ label, href }) => (
                 <a
@@ -128,7 +90,7 @@ const Footer = () => {
                       window.history.pushState(null, '', href);
                     }
                   }}
-                  className="footer-social group text-slate-600 dark:text-gray-400 hover:text-red dark:hover:text-red transition-all duration-200 text-sm font-medium hover:translate-x-1 inline-block"
+                  className="group text-slate-800 dark:text-gray-300 hover:text-red dark:hover:text-red transition-all duration-200 text-sm font-semibold hover:translate-x-1 inline-block"
                 >
                   <span>{label}</span>
                 </a>
@@ -142,7 +104,7 @@ const Footer = () => {
       <div className="relative z-10 border-t border-slate-200 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-6 sm:px-16 lg:px-24 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-slate-500 dark:text-gray-500 text-sm hover:text-slate-700 dark:hover:text-gray-300 transition-colors duration-300">
+            <div className="flex items-center gap-2 text-slate-600 dark:text-gray-400 text-sm font-medium transition-colors duration-300">
               <span>© 2026 Md Mahabub Rana Saikat. Made with</span>
               <Heart className="w-4 h-4 text-red fill-red animate-pulse-scale" />
               <span>and lots of coffee.</span>
@@ -151,11 +113,11 @@ const Footer = () => {
             {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="group flex items-center gap-2 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover-lift"
+              className="group flex items-center gap-2 text-slate-800 dark:text-gray-300 hover:text-red dark:hover:text-white transition-all duration-300 hover-lift cursor-pointer"
             >
-              <span className="text-sm font-medium">Back to top</span>
-              <div className="w-8 h-8 bg-white dark:bg-gradient-to-br dark:from-dark-100 dark:to-dark-200 border border-slate-200 dark:border-transparent rounded-lg flex items-center justify-center group-hover:from-red group-hover:to-red/80 group-hover:bg-red dark:group-hover:bg-transparent transition-all duration-300 group-hover:shadow-lg group-hover:shadow-red/50 group-hover:scale-110 shadow-sm dark:shadow-none">
-                <ArrowUp className="w-4 h-4 text-slate-600 dark:text-gray-400 group-hover:text-white dark:group-hover:text-black transition-all duration-300 group-hover:-translate-y-1" />
+              <span className="text-sm font-semibold">Back to top</span>
+              <div className="w-8 h-8 bg-white dark:bg-gradient-to-br dark:from-dark-100 dark:to-dark-200 border border-slate-300 dark:border-transparent rounded-lg flex items-center justify-center group-hover:from-red group-hover:to-red/80 group-hover:bg-red dark:group-hover:bg-transparent transition-all duration-300 group-hover:shadow-lg group-hover:shadow-red/50 group-hover:scale-110 shadow-sm dark:shadow-none">
+                <ArrowUp className="w-4 h-4 text-slate-800 dark:text-gray-300 group-hover:text-white dark:group-hover:text-black transition-all duration-300 group-hover:-translate-y-1" />
               </div>
             </button>
           </div>
