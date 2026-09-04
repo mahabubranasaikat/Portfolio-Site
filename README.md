@@ -37,25 +37,26 @@ A modern, animated portfolio website built with React, TypeScript, Vite, Tailwin
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Core Competencies
 
-### Frontend Framework
-- **React 18** - UI library
+### Native macOS & Apple Ecosystem
+- **Swift 5.9+** - Native type-safe system language
+- **SwiftUI** - Modern declarative UI framework
+- **WebKit & AppKit** - Native browser engines & macOS window managers
+- **Accessibility API & Carbon HotKey** - System-level automation & global hotkey handling
+
+### Web & Backend Stack
+- **React 19** - UI library
 - **TypeScript** - Type-safe JavaScript
-- **Vite** - Lightning-fast build tool
-- **Tailwind CSS** - Utility-first CSS framework
-- **GSAP** - Professional animations library
+- **Node.js & Express.js** - Scalable backend APIs & JWT auth
+- **MySQL & MongoDB** - Relational and NoSQL databases
+- **Vite & Tailwind CSS** - Lightning-fast build tool and modern styling
+- **GSAP** - Professional animations library & ScrollTrigger
 
-### Libraries & Tools
-- **Lucide React** - Beautiful SVG icons
-- **Axios** - HTTP client for form submission
-- **ScrollTrigger** - GSAP plugin for scroll animations
-
-### Development & Build
-- **TypeScript** - Static type checking
-- **ESLint** - Code quality
-- **PostCSS** - CSS preprocessing
-- **Git** - Version control
+### Development & Tooling
+- **Xcode** - Native macOS development environment
+- **Git & GitHub** - Version control & open-source collaboration
+- **Postman & VS Code** - API testing & cross-platform coding
 
 ---
 
@@ -272,7 +273,7 @@ VITE_FORMSPREE_ID=your-form-id
 - **University**: Shahjalal University of Science and Technology (SUST)
 - **Department**: Institute of Information and Communication Technology (IICT)
 - **Location**: Sylhet, Bangladesh
-- **Year**: 3rd Year (2023–Present)
+- **Year**: 4th Year (2023–Present)
 
 ### Previous Education
 - **H.S.C.**: Government Shah Sultan College, Bogra (2019–2021) | GPA: 5.0

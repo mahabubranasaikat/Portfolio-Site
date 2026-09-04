@@ -1,3 +1,5 @@
+import colors from 'tailwindcss/colors';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -13,7 +15,10 @@ export default {
           100: "#1a1a1a",
           200: "#2a2a2a",
         },
-        red: "#ff3b30",
+        red: {
+          ...colors.red,
+          DEFAULT: "#ff3b30",
+        },
         // Blackish-Red color palette
         "dark-red": {
           50: "#4a0e0e",

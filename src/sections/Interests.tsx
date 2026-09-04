@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Cpu, Code, BookOpen, Brain, Zap, Lightbulb } from 'lucide-react';
+import { Terminal, Layers, Cpu, Server, Brain, Smartphone } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,40 +10,40 @@ const Interests = () => {
 
   const interests = [
     {
-      title: 'Backend Dev',
-      description: 'Building scalable systems with Node.js and Express',
+      title: 'Core SWE',
+      description: 'Foundational software engineering principles, algorithms, and full software lifecycle.',
+      icon: Terminal,
+      color: 'from-blue-500 to-indigo-600',
+    },
+    {
+      title: 'SWE Architecture',
+      description: 'Designing maintainable system architecture, clean modular design, and robust structures.',
+      icon: Layers,
+      color: 'from-emerald-500 to-teal-600',
+    },
+    {
+      title: 'Scalable Systems',
+      description: 'Architecting distributed services, high-throughput systems, and performant backends.',
       icon: Cpu,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-purple-500 to-indigo-600',
     },
     {
-      title: 'Software Engineering',
-      description: 'Clean architecture and design patterns',
-      icon: Code,
-      color: 'from-green-500 to-emerald-500',
+      title: 'Backend',
+      description: 'Building resilient APIs, database-backed architectures, and scalable server-side systems.',
+      icon: Server,
+      color: 'from-amber-500 to-orange-600',
     },
     {
-      title: 'Problem Solving',
-      description: 'Competitive programming and algorithmic thinking',
+      title: 'AI/ML',
+      description: 'Exploring intelligent algorithms, context-aware applications, and modern AI integration.',
       icon: Brain,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-rose-500 to-red-600',
     },
     {
-      title: 'Full-Stack Dev',
-      description: 'Creating complete end-to-end solutions',
-      icon: Zap,
-      color: 'from-orange-500 to-amber-500',
-    },
-    {
-      title: 'System Design',
-      description: 'Designing robust distributed systems',
-      icon: BookOpen,
-      color: 'from-red-500 to-rose-500',
-    },
-    {
-      title: 'Innovation',
-      description: 'Exploring new technologies and frameworks',
-      icon: Lightbulb,
-      color: 'from-indigo-500 to-violet-500',
+      title: 'iOS Development',
+      description: 'Crafting performant, intuitive mobile and native experiences with modern tools.',
+      icon: Smartphone,
+      color: 'from-violet-500 to-purple-600',
     },
   ];
 
@@ -52,16 +52,16 @@ const Interests = () => {
       // Title animation
       gsap.fromTo(
         '.interests-title',
-        { y: 30, opacity: 0 },
+        { y: 20, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          ease: 'expo.out',
+          duration: 0.4,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
+            start: 'top 92%',
+            once: true,
           },
         }
       );
@@ -72,55 +72,51 @@ const Interests = () => {
         { scaleX: 0 },
         {
           scaleX: 1,
-          duration: 0.5,
-          ease: 'expo.out',
+          duration: 0.35,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 65%',
-            toggleActions: 'play none none reverse',
+            start: 'top 92%',
+            once: true,
           },
         }
       );
 
-       // Interest cards with advanced animations
+       // Interest cards - clean and snappy
        gsap.fromTo(
          '.interest-card',
          { 
-           y: 30, 
+           y: 15, 
            opacity: 0,
-           scale: 0.9,
-           rotateY: 25,
          },
          {
            y: 0,
            opacity: 1,
-           scale: 1,
-           rotateY: 0,
-           duration: 0.7,
-           stagger: 0.12,
-           ease: 'expo.out',
+           duration: 0.35,
+           stagger: 0.06,
+           ease: 'power2.out',
            scrollTrigger: {
-             trigger: '.interests-grid',
-             start: 'top 75%',
-             toggleActions: 'play none none reverse',
+             trigger: sectionRef.current,
+             start: 'top 95%',
+             once: true,
            },
          }
        );
 
-      // Icon animations
+      // Icon subtle scale
       gsap.fromTo(
         '.interest-icon',
-        { scale: 0, rotate: -180 },
+        { scale: 0.9, opacity: 0 },
         {
           scale: 1,
-          rotate: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'elastic.out(1.2, 0.6)',
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.06,
+          ease: 'power2.out',
           scrollTrigger: {
-            trigger: '.interests-grid',
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
+            trigger: sectionRef.current,
+            start: 'top 95%',
+            once: true,
           },
         }
       );
@@ -133,73 +129,64 @@ const Interests = () => {
     <section
       ref={sectionRef}
       id="interests"
-      className="relative py-28 bg-black overflow-hidden"
+      className="relative py-28 bg-slate-50 dark:bg-black overflow-hidden transition-colors duration-300"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-dark-100/20 to-black opacity-40" />
+      {/* Dynamic Tech Grid Pattern Overlay */}
+      <div className="absolute inset-0 tech-grid pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-red/8 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-12 lg:px-20">
         {/* Header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-dark-100/50 border border-white/10 rounded-full mb-6">
-            <div className="w-2 h-2 bg-red rounded-full animate-pulse" />
-            <span className="text-xs text-red font-medium tracking-[0.15em] uppercase">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-gradient-to-r from-red-950/80 via-black to-red-950/60 border border-red-500/40 rounded-full mb-6 shadow-sm">
+            <div className="w-2 h-2 bg-red rounded-full animate-ping" />
+            <span className="text-xs text-red font-mono font-bold tracking-[0.2em] uppercase">
               Passions
             </span>
           </div>
           
-          <h2 className="interests-title font-display text-5xl sm:text-6xl text-white mb-4">
+          <h2 className="interests-title font-outfit font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-950 dark:text-white mb-4 tracking-tight">
             INTERESTS
           </h2>
-          <div className="interests-accent w-24 h-1 bg-gradient-to-r from-red via-red/50 to-transparent origin-left" />
-          <p className="text-gray-400 mt-4 max-w-2xl text-sm">
+          <div className="interests-accent w-24 h-1.5 bg-gradient-to-r from-[#ff3b30] via-[#881337] to-transparent rounded-full origin-left" />
+          <p className="text-slate-600 dark:text-gray-300 mt-4 max-w-2xl text-base font-medium leading-relaxed">
             Core areas that drive my passion for continuous learning and innovation
           </p>
         </div>
 
-         {/* Interests Grid */}
-         <div className="interests-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-           {interests.map((interest, index) => (
-             <div
-               key={index}
-               className="interest-card group relative bg-gradient-to-br from-dark-100/60 to-dark-200/40 backdrop-blur-sm border border-white/8 rounded-xl p-6 transition-all duration-500 hover:border-red/50 hover:shadow-2xl hover:shadow-red/25 overflow-hidden hover-lift"
-             >
-               {/* Background Glow with animation */}
-               <div className={`absolute inset-0 bg-gradient-to-br ${interest.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+        {/* Interests Grid */}
+        <div className="interests-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {interests.map((interest, index) => (
+            <div
+              key={index}
+              className="interest-card group relative card-modern rounded-2xl p-7 overflow-hidden"
+            >
+              {/* Radial Glow on Hover */}
+              <div className={`absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br ${interest.color} rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
 
-               {/* Animated shimmer overlay */}
-               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer" />
+              {/* Top Accent Line */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red via-red/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-               {/* Content */}
-               <div className="relative z-10 space-y-3">
-                 {/* Icon */}
-                 <div className={`interest-icon w-12 h-12 rounded-lg bg-gradient-to-br ${interest.color} flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-125 group-hover:shadow-lg group-hover:shadow-red/40 hover-glow`}>
-                   <interest.icon className="w-6 h-6 text-white group-hover:rotate-12 transition-transform duration-300" />
-                 </div>
+              {/* Content */}
+              <div className="relative z-10 space-y-4">
+                {/* Icon */}
+                <div className={`interest-icon w-12 h-12 rounded-xl bg-gradient-to-br ${interest.color} flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110 shadow-red/20`}>
+                  <interest.icon className="w-5 h-5 text-white group-hover:rotate-6 transition-transform duration-300" />
+                </div>
 
-                 {/* Title */}
-                 <h3 className="font-display text-lg text-white group-hover:text-red transition-all duration-300 text-stroke">
-                   {interest.title}
-                 </h3>
+                {/* Title */}
+                <h3 className="font-outfit font-bold text-lg sm:text-xl text-slate-950 dark:text-white group-hover:text-red transition-all duration-300 tracking-tight">
+                  {interest.title}
+                </h3>
 
-                 {/* Description */}
-                 <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                   {interest.description}
-                 </p>
-               </div>
-
-               {/* Top Left Corner - Animated */}
-               <div className="absolute top-0 left-0 w-8 h-8 border-l border-t border-red/20 rounded-tl-xl group-hover:border-red/70 group-hover:w-12 group-hover:h-12 transition-all duration-300" />
-               
-               {/* Bottom Right Corner - Animated */}
-               <div className="absolute bottom-0 right-0 w-8 h-8 border-r border-b border-red/20 rounded-br-xl opacity-0 group-hover:opacity-100 group-hover:border-red/70 group-hover:w-12 group-hover:h-12 transition-all duration-300" />
-
-               {/* Floating Accent Dot */}
-               <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red/0 group-hover:bg-red/40 transition-all duration-300 opacity-0 group-hover:opacity-100 animate-pulse" />
-             </div>
-           ))}
-         </div>
+                {/* Description */}
+                <p className="text-slate-600 dark:text-gray-300 text-sm leading-relaxed font-normal">
+                  {interest.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
