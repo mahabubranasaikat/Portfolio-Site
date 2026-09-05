@@ -14,7 +14,8 @@ import {
   Orbit,
   Timer,
   Code2,
-  Terminal
+  Terminal,
+  FileText
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,6 +35,16 @@ const Works = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   const projects: ProjectItem[] = [
+    {
+      title: 'Stella',
+      category: 'Native macOS Markdown Editor & Typesetting Suite',
+      description: 'A lightweight, high-performance native Markdown editor and viewer for macOS written in Swift. Combines true in-place live editing with offline LaTeX (KaTeX) typesetting, Mermaid flowcharts, PlantUML diagrams, and a VS Code-style file explorer sidebar.',
+      icon: FileText,
+      tags: ['Swift', 'macOS', 'AppKit', 'KaTeX', 'Mermaid', 'PlantUML'],
+      link: 'https://github.com/mahabubranasaikat/Stella',
+      color: 'from-violet-500 to-indigo-600',
+      image: '/stella.png',
+    },
     {
       title: 'Odessey',
       category: 'Native macOS Productivity Suite',
@@ -97,7 +108,7 @@ const Works = () => {
   ];
 
   const projectStats = {
-    total: '6+',
+    total: '7+',
     domains: [
       { name: 'App Development', icon: Smartphone },
       { name: 'Web Development', icon: Globe },

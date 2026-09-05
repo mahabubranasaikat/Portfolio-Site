@@ -270,7 +270,7 @@ const About = () => {
             {/* Stats Row - Horizontally aligned with ABOUT ME, on upside of Photo */}
             <div className="flex items-center justify-between px-2 pt-1 pb-1">
               <div className="flex flex-col items-center text-center">
-                <div className="font-outfit font-black text-3xl sm:text-4xl text-red leading-none">6+</div>
+                <div className="font-outfit font-black text-3xl sm:text-4xl text-red leading-none">7+</div>
                 <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-gray-400 uppercase tracking-wider font-semibold mt-1">Projects</div>
               </div>
               <div className="w-px h-10 bg-slate-300 dark:bg-white/15" />
