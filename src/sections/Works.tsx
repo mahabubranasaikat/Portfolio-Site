@@ -36,6 +36,16 @@ const Works = () => {
 
   const projects: ProjectItem[] = [
     {
+      title: 'Orbit',
+      category: 'macOS Application / AI Context Companion',
+      description: 'An ambient, floating AI context companion and glassmorphic browser for macOS. Floats as an interactive glowing chathead bubble, docks dynamically to screen quadrants, extracts instant deep system context across IDEs and browsers, and automatically injects formatted prompts into ChatGPT, Claude, and Gemini.',
+      icon: Orbit,
+      tags: ['Swift', 'SwiftUI', 'macOS', 'WebKit', 'AppKit'],
+      link: 'https://github.com/mahabubranasaikat/Orbit',
+      color: 'from-cyan-500 to-blue-600',
+      image: '/Orbit.png',
+    },
+    {
       title: 'Stella',
       category: 'Native macOS Markdown Editor & Typesetting Suite',
       description: 'A lightweight, high-performance native Markdown editor and viewer for macOS written in Swift. Combines true in-place live editing with offline LaTeX (KaTeX) typesetting, Mermaid flowcharts, PlantUML diagrams, and a VS Code-style file explorer sidebar.',
@@ -64,16 +74,6 @@ const Works = () => {
       link: 'https://github.com/mahabubranasaikat/SWE_Society',
       color: 'from-red to-red-dark',
       image: '/SWE_Society.png',
-    },
-    {
-      title: 'Orbit',
-      category: 'macOS Application / AI Context Companion',
-      description: 'An ambient, floating AI context companion and glassmorphic browser for macOS. Floats as an interactive glowing chathead bubble, docks dynamically to screen quadrants, extracts instant deep system context across IDEs and browsers, and automatically injects formatted prompts into ChatGPT, Claude, and Gemini.',
-      icon: Orbit,
-      tags: ['Swift', 'SwiftUI', 'macOS', 'WebKit', 'AppKit'],
-      link: 'https://github.com/mahabubranasaikat/Orbit',
-      color: 'from-cyan-500 to-blue-600',
-      image: '/Orbit.jpg',
     },
     {
       title: 'Climate Hope',

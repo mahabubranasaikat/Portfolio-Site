@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Terminal, Layers, Cpu, Server, Brain, Smartphone } from 'lucide-react';
+import { Terminal, Layers, Cpu, ServerCog, Brain, Smartphone } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +16,7 @@ const Interests = () => {
       color: 'from-blue-500 to-indigo-600',
     },
     {
-      title: 'SWE Architecture',
+      title: 'Architecture',
       description: 'Designing maintainable system architecture, clean modular design, and robust structures.',
       icon: Layers,
       color: 'from-emerald-500 to-teal-600',
@@ -30,7 +30,7 @@ const Interests = () => {
     {
       title: 'Backend',
       description: 'Building resilient APIs, database-backed architectures, and scalable server-side systems.',
-      icon: Server,
+      icon: ServerCog,
       color: 'from-amber-500 to-orange-600',
     },
     {

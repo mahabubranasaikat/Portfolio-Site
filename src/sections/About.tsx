@@ -3,15 +3,11 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Download,
-  Code2,
-  Database,
-  Server,
-  Globe,
+  ServerCog,
   Terminal,
   Brain,
   Target,
   Zap,
-  Wrench,
   MapPin,
   Smartphone,
   Layers,
@@ -24,60 +20,38 @@ const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const skillCategories = [
+  const technicalSkills = [
     {
-      title: 'Languages',
-      icon: Code2,
-      skills: ['JavaScript', 'C++', 'Python'],
+      category: 'Languages',
+      items: 'C++, Java, Python, JavaScript, Dart, Swift, Go (Golang)',
     },
     {
-      title: 'App Development',
-      icon: Smartphone,
-      skills: ['Flutter', 'Swift (iOS, macOS)'],
+      category: 'Backend',
+      items: 'Node.js, Express.js, REST APIs, JWT Authentication',
     },
     {
-      title: 'Frontend',
-      icon: Globe,
-      skills: ['HTML5', 'CSS3', 'JavaScript'],
+      category: 'Databases',
+      items: 'MySQL, MongoDB, SQLite, Core Data',
     },
     {
-      title: 'Databases',
-      icon: Database,
-      skills: ['MySQL', 'MongoDB', 'Core Data'],
+      category: 'Frontend',
+      items: 'HTML, CSS, React, TypeScript',
     },
     {
-      title: 'Backend',
-      icon: Server,
-      skills: ['Node.js', 'Express.js', 'REST API', 'JWT'],
+      category: 'Tools',
+      items: 'Git, Postman, Docker, CI/CD, Claude Code, Copilot, Antigravity',
     },
     {
-      title: 'Tools',
-      icon: Wrench,
-      skills: ['Git', 'Copilot', 'Claude Code', 'Antigravity', 'Postman'],
-    },
-    {
-      title: 'Core CS',
-      icon: Brain,
-      skills: [
-        'DSA',
-        'OOP',
-        'Problem Solving',
-        'Design Patterns',
-        'System Design',
-        'Database',
-        'Testing',
-        'SDLC',
-        'SRE',
-        'Documentation',
-      ],
+      category: 'Fundamentals',
+      items: 'Data Structures & Algorithms, OOP, Design Patterns, SRE, SDLC, Testing',
     },
   ];
 
   const interestAreas = [
     { name: 'Core SWE', icon: Terminal },
-    { name: 'SWE Architecture', icon: Layers },
+    { name: 'Architecture', icon: Layers },
     { name: 'Scalable Systems', icon: Cpu },
-    { name: 'Backend', icon: Server },
+    { name: 'Backend', icon: ServerCog },
     { name: 'AI/ML', icon: Brain },
     { name: 'IOS Dev', icon: Smartphone },
   ];
@@ -119,15 +93,15 @@ const About = () => {
         }
       );
 
-      // Skill categories
+      // Skill items animation
       gsap.fromTo(
-        '.skill-item',
-        { scale: 0.96, opacity: 0 },
+        '.skill-row',
+        { y: 6, opacity: 0 },
         {
-          scale: 1,
+          y: 0,
           opacity: 1,
           duration: 0.3,
-          stagger: 0.02,
+          stagger: 0.03,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -171,71 +145,62 @@ const About = () => {
       <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-red/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-16 lg:px-24">
+        {/* Header - Positioned slightly up */}
+        <div className="flex items-center gap-3 mb-6 lg:mb-8">
+          <Terminal className="w-5 h-5 text-red" />
+          <h2 className="font-outfit font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-950 dark:text-white tracking-tight">
+            {'ABOUT ME'.split('').map((char, i) => (
+              <span key={i} className="about-title-char inline-block">
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            ))}
+          </h2>
+        </div>
+
         <div
           ref={contentRef}
           className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start"
         >
           {/* Left - Content */}
           <div className="lg:col-span-8 space-y-8 order-2 lg:order-1">
-            {/* Title */}
-            <div className="flex items-center gap-3">
-              <Terminal className="w-5 h-5 text-red" />
-              <h2 className="font-outfit font-extrabold text-4xl sm:text-5xl text-slate-950 dark:text-white tracking-tight">
-                {'ABOUT ME'.split('').map((char, i) => (
-                  <span key={i} className="about-title-char inline-block">
-                    {char === ' ' ? '\u00A0' : char}
-                  </span>
-                ))}
-              </h2>
-            </div>
-
-            {/* Bio */}
-            <p className="about-content text-slate-600 dark:text-gray-300 text-base leading-relaxed max-w-2xl font-medium">
+            {/* Bio - Now aligned horizontally with 7+ Projects stats on the right */}
+            <p className="about-content text-slate-600 dark:text-gray-300 text-base leading-relaxed max-w-2xl font-medium pt-1">
               Hi,I am a Software Engineering student at SUST, passionate about building scalable, reliable, and real-world modern systems that create a meaningful impact on society.
             </p>
 
-            {/* Key Technical Skills */}
+            {/* Key Technical Skills with Rich Hover Effects */}
             <div className="about-content">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-2.5">
                 <Target className="w-3.5 h-3.5 text-red" />
                 <h3 className="text-[11px] text-red font-mono font-bold uppercase tracking-wider">
                   Technical Skills
                 </h3>
               </div>
 
-              <div className="skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                {skillCategories.map((category) => {
-                  const CategoryIcon = category.icon;
-                  const isCoreCS = category.title === 'Core CS';
-                  return (
-                    <div
-                      key={category.title}
-                      className={`skill-item group skill-card-compact rounded-xl p-2.5 sm:p-3 flex flex-col justify-start cursor-default ${
-                        isCoreCS ? 'col-span-1 sm:col-span-2 lg:col-span-3' : 'col-span-1'
-                      }`}
-                    >
-                      <div className="flex items-center gap-1.5 mb-2">
-                        <div className="w-4 h-4 rounded bg-red/10 dark:bg-red/15 flex items-center justify-center text-red shrink-0 group-hover:bg-red/30 transition-colors">
-                          <CategoryIcon className="w-2.5 h-2.5" />
-                        </div>
-                        <h4 className="text-slate-950 dark:text-white text-[11.5px] sm:text-xs font-outfit font-bold group-hover:text-red-400 dark:group-hover:text-white transition-colors truncate">
-                          {category.title}
-                        </h4>
-                      </div>
+              <div className="group/card relative card-modern rounded-2xl p-4 sm:p-5 space-y-2 overflow-hidden">
+                {/* Top ambient red bar on hover */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red via-red/60 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
 
-                      <div className="flex flex-nowrap items-center gap-1.5 overflow-x-auto no-scrollbar">
-                        {category.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="shrink-0 whitespace-nowrap px-2 py-0.5 text-[9.5px] sm:text-[10px] bg-slate-100/90 dark:bg-white/[0.06] border border-slate-200/80 dark:border-white/[0.12] rounded-md text-slate-700 dark:text-gray-200 font-mono font-medium leading-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] group-hover:border-red/40 group-hover:bg-black/50 group-hover:text-white transition-all duration-200"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                {technicalSkills.map((skill) => (
+                  <div
+                    key={skill.category}
+                    className="skill-row group/row relative grid grid-cols-12 gap-2 sm:gap-4 items-center p-2 rounded-xl border border-transparent hover:border-red/30 hover:bg-slate-200/60 dark:hover:bg-white/[0.05] hover:shadow-md hover:shadow-red/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                  >
+                    <span className="col-span-12 sm:col-span-3 font-outfit font-bold text-xs sm:text-sm text-slate-950 dark:text-white group-hover/row:text-red transition-colors duration-300">
+                      {skill.category}
+                    </span>
+                    <div className="col-span-12 sm:col-span-9 flex flex-wrap items-center gap-1.5">
+                      {skill.items.split(', ').map((item) => (
+                        <span
+                          key={item}
+                          className="px-2 py-0.5 text-[10.5px] sm:text-[11px] font-mono font-medium rounded-md bg-white/80 dark:bg-white/[0.06] border border-slate-200/80 dark:border-white/10 text-slate-700 dark:text-gray-300 hover:border-red/60 hover:bg-red/10 dark:hover:bg-red/20 hover:text-red dark:hover:text-white hover:scale-105 transition-all duration-200"
+                        >
+                          {item}
+                        </span>
+                      ))}
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </div>
 

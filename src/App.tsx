@@ -8,6 +8,8 @@ import About from './sections/About';
 import Education from './sections/Education';
 import Services from './sections/Services';
 import Works from './sections/Works';
+import ProblemSolving from './sections/ProblemSolving';
+import Leadership from './sections/Leadership';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
@@ -60,6 +62,8 @@ function App() {
         <Education />
         <Services />
         <Works />
+        <ProblemSolving />
+        <Leadership />
         <Contact />
         <Footer />
       </main>

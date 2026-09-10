@@ -7,12 +7,13 @@ const navItems = [
   { id: 'education', label: 'Education', href: '#education' },
   { id: 'services', label: 'Services', href: '#services' },
   { id: 'works', label: 'Projects', href: '#works' },
+  { id: 'problem-solving', label: 'Coding', href: '#problem-solving' },
+  { id: 'leadership', label: 'Leadership', href: '#leadership' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
   const { toggleTheme, isDark } = useTheme();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
@@ -20,7 +21,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
 
       // Show Saikat logo only from About Me section onwards
       const aboutSection = document.getElementById('about');
@@ -32,7 +32,7 @@ export default function Navbar() {
       }
 
       // Real-time User Position Detection (Scroll Spy)
-      const sectionIds = ['contact', 'works', 'services', 'education', 'about'];
+      const sectionIds = ['contact', 'leadership', 'problem-solving', 'works', 'services', 'education', 'about'];
       const viewportHeight = window.innerHeight;
       const scrollBottom = scrollY + viewportHeight;
       const docHeight = document.documentElement.scrollHeight;
@@ -80,74 +80,66 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/90 dark:bg-black/75 backdrop-blur-2xl py-2 sm:py-2.5 border-b border-slate-200/90 dark:border-white/[0.08] shadow-[0_4px_25px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-          : 'bg-white/80 dark:bg-black/35 backdrop-blur-xl py-2.5 sm:py-3 border-b border-slate-200/70 dark:border-white/[0.05] shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
-      }`}
-    >
-      <div className="w-full px-5 sm:px-8 lg:px-10 flex items-center justify-between">
-        {/* Left: Brand Logo (Only shown from About Me onwards) */}
+    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none p-3 sm:p-4 lg:p-5">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
+        {/* Left: Floating Brand Logo Capsule (Only shown from About Me onwards) */}
         <div
-          className={`transition-all duration-500 ease-out ${
+          className={`transition-all duration-500 ease-out pointer-events-auto ${
             showLogo
-              ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto w-auto'
-              : 'opacity-0 -translate-y-3 scale-95 pointer-events-none w-0 overflow-hidden'
+              ? 'opacity-100 translate-y-0 scale-100'
+              : 'opacity-0 -translate-y-4 scale-90 pointer-events-none'
           }`}
         >
-          <button
-            onClick={scrollToTop}
-            className="group flex items-center gap-2 text-left focus:outline-none whitespace-nowrap cursor-pointer"
-            aria-label="Scroll to top"
-          >
-            <span className="font-display text-2xl sm:text-3xl text-slate-950 dark:text-white tracking-wider group-hover:text-red transition-colors duration-300">
-              Saikat
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse" />
-          </button>
+          <div className="glass-liquid rounded-full px-4 py-2 border border-slate-200/90 dark:border-white/15 shadow-xl shadow-black/5 dark:shadow-black/50 hover:border-red/50 hover:scale-105 transition-all duration-300">
+            <button
+              onClick={scrollToTop}
+              className="group flex items-center gap-2 text-left focus:outline-none whitespace-nowrap cursor-pointer"
+              aria-label="Scroll to top"
+            >
+              <span className="font-display text-2xl text-slate-950 dark:text-white tracking-wider group-hover:text-red transition-colors duration-300">
+                Saikat
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse" />
+            </button>
+          </div>
         </div>
 
-        {/* Right Area: All Navigation Links + Theme Toggle positioned right by the edge */}
-        <div className="flex items-center gap-4 sm:gap-6 ml-auto">
-          {/* Desktop Navigation Links with High Contrast in Light & Dark Mode */}
-          <nav className="hidden md:flex items-center gap-2 lg:gap-3" aria-label="Main Navigation">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.href);
-                  }}
-                  className={`relative px-3 py-1.5 rounded-lg text-xs sm:text-[13px] tracking-wider transition-all duration-200 group cursor-pointer ${
-                    isActive
-                      ? 'text-red-600 dark:text-red font-bold bg-red-500/10 dark:bg-red-500/15'
-                      : 'font-semibold text-slate-800 dark:text-gray-200 hover:text-red-600 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-white/5'
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  {/* Glowing Active Position Indicator */}
-                  <span
-                    className={`absolute bottom-0 left-2 right-2 h-[2px] bg-red transition-all duration-300 rounded-full ${
+        {/* Right: Floating macOS Menu Bar Capsule */}
+        <div className="ml-auto flex flex-col items-end pointer-events-auto">
+          <div className="glass-liquid rounded-full px-2.5 sm:px-3.5 py-1.5 border border-slate-200/90 dark:border-white/15 shadow-xl shadow-black/5 dark:shadow-black/50 flex items-center gap-1 sm:gap-2">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                    className={`relative px-3 py-1.5 rounded-full text-xs sm:text-[12.5px] font-semibold tracking-wide transition-all duration-200 group cursor-pointer ${
                       isActive
-                        ? 'opacity-100 shadow-[0_0_8px_rgba(255,59,48,0.85)]'
-                        : 'opacity-0 group-hover:opacity-100'
+                        ? 'text-red-600 dark:text-red font-bold bg-red-500/15 dark:bg-red-500/20 shadow-xs'
+                        : 'text-slate-800 dark:text-gray-200 hover:text-red-600 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/10'
                     }`}
-                  />
-                </a>
-              );
-            })}
-          </nav>
+                  >
+                    <span>{item.label}</span>
+                    {isActive && (
+                      <span className="absolute bottom-1 left-3 right-3 h-[2px] bg-red rounded-full shadow-[0_0_6px_rgba(255,59,48,0.9)]" />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
 
-          {/* Action Controls (Theme Toggle + Mobile Menu Button) */}
-          <div className="flex items-center gap-2">
+            <div className="hidden md:block w-px h-4 bg-slate-300 dark:bg-white/15 mx-1" />
+
             {/* Light / Dark Mode Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="group relative p-2 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-gray-200 shadow-xs hover:border-red/40 hover:text-red-600 dark:hover:text-amber-400 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              className="group relative p-2 rounded-full hover:bg-slate-200/60 dark:hover:bg-white/10 text-slate-800 dark:text-gray-200 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
               title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
@@ -162,45 +154,45 @@ export default function Navbar() {
             {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="md:hidden p-2 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-gray-200 shadow-xs hover:border-red/40 transition-colors focus:outline-none cursor-pointer"
+              className="md:hidden p-2 rounded-full hover:bg-slate-200/60 dark:hover:bg-white/10 text-slate-800 dark:text-gray-200 transition-colors focus:outline-none cursor-pointer"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
+
+          {/* Mobile Navigation Floating Dropdown Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-2 w-56 glass-liquid rounded-2xl border border-slate-200/90 dark:border-white/15 shadow-2xl p-2.5 transition-all duration-300 animate-in fade-in slide-in-from-top-2">
+              <nav className="flex flex-col space-y-1">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(item.href);
+                      }}
+                      className={`text-xs font-semibold py-2 px-3 rounded-xl flex items-center justify-between transition-all ${
+                        isActive
+                          ? 'bg-red-500/15 text-red-600 dark:text-red font-bold'
+                          : 'text-slate-800 dark:text-gray-200 hover:text-red-600 dark:hover:text-red hover:bg-slate-200/60 dark:hover:bg-white/10'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <span className={`text-[10px] font-mono ${isActive ? 'text-red font-bold' : 'text-slate-400 dark:text-gray-500'}`}>
+                        {isActive ? '●' : '→'}
+                      </span>
+                    </a>
+                  );
+                })}
+              </nav>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Mobile Navigation Dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-b border-slate-200 dark:border-white/10 px-6 py-4 transition-all duration-300 shadow-2xl">
-          <nav className="flex flex-col space-y-1.5">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.href);
-                  }}
-                  className={`text-sm font-semibold py-2.5 px-3 rounded-lg flex items-center justify-between transition-all ${
-                    isActive
-                      ? 'bg-red-500/10 text-red-600 dark:text-red font-bold border-l-4 border-red'
-                      : 'text-slate-800 dark:text-gray-200 hover:text-red-600 dark:hover:text-red hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  <span className={`text-xs font-mono ${isActive ? 'text-red font-bold' : 'text-slate-400 dark:text-gray-500'}`}>
-                    {isActive ? '●' : '→'}
-                  </span>
-                </a>
-              );
-            })}
-          </nav>
-        </div>
-      )}
     </header>
   );
 }

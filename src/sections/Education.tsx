@@ -169,23 +169,32 @@ const Education = () => {
 
         {/* Modern Alternating Timeline */}
         <div ref={timelineRef} className="relative">
-          {/* Vertical Timeline Line - Center */}
-          <div className="timeline-line hidden lg:block absolute left-1/2 -translate-x-1/2 top-6 bottom-0 w-0.5 bg-gradient-to-b from-red via-red/40 to-transparent" />
+          {/* Vertical Timeline Line - Mobile (left-aligned) & Desktop (center) */}
+          <div className="timeline-line absolute left-6 sm:left-7 lg:left-1/2 -translate-x-1/2 top-6 bottom-4 w-0.5 bg-gradient-to-b from-red via-red/40 to-transparent" />
 
           {/* Timeline Items */}
-          <div className="space-y-14 lg:space-y-16">
+          <div className="space-y-12 lg:space-y-16">
             {educationData.map((edu, index) => (
               <div
                 key={index}
-                className={`edu-item relative flex items-center gap-6 lg:gap-0 ${
+                className={`edu-item relative flex flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-0 ${
                   index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 }`}
               >
+                {/* Mobile Timeline Dot - Positioned on the left vertical line */}
+                <div className="lg:hidden shrink-0 z-20 mt-2">
+                  <div className="edu-dot relative">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg border-4 border-slate-50 dark:border-black transition-all duration-500 hover:scale-110 hover:shadow-red/50`}>
+                      <edu.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                  </div>
+                </div>
+
                 {/* Content Card - Wider and Shorter */}
-                <div className={`w-full lg:w-5/12 ${
+                <div className={`flex-1 min-w-0 lg:w-5/12 ${
                   index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'
                 }`}>
-                   <div className="edu-card group relative card-modern rounded-2xl p-7 sm:p-8 overflow-hidden">
+                   <div className="edu-card group relative card-modern rounded-2xl p-6 sm:p-8 overflow-hidden">
                      
                      {/* Highlight Badge - Positioned Inside Box */}
                      {edu.highlight && (
@@ -260,21 +269,15 @@ const Education = () => {
                    </div>
                  </div>
 
-                 {/* Mobile Timeline Dot */}
-                 <div className="lg:hidden flex-shrink-0 group">
-                   <div className="edu-dot relative z-20">
-                     <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${edu.color} flex items-center justify-center shadow-lg border-4 border-slate-50 dark:border-black transition-all duration-500 group-hover:scale-125 group-hover:shadow-lg group-hover:shadow-red/50`}>
-                       <edu.icon className="w-7 h-7 text-white" />
-                     </div>
-                   </div>
-                 </div>
+                 {/* Empty Space for Desktop Grid Balance */}
+                 <div className="hidden lg:block lg:w-5/12" />
               </div>
             ))}
           </div>
 
           {/* Bottom Timeline Flourish */}
-          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 -bottom-6 justify-center">
-            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red to-amber-700 border-4 border-slate-50 dark:border-black shadow-lg" />
+          <div className="flex absolute left-6 sm:left-7 lg:left-1/2 -translate-x-1/2 -bottom-6 justify-center">
+            <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-red to-amber-700 border-4 border-slate-50 dark:border-black shadow-lg" />
           </div>
         </div>
       </div>
