@@ -4,7 +4,6 @@ import {
   Github,
   Linkedin,
   Twitter,
-  Facebook,
   Mail,
   Phone,
   ArrowDown,
@@ -353,7 +352,6 @@ const Hero = () => {
               { icon: Github, href: 'https://github.com/mahabubranasaikat', label: 'GitHub' },
               { icon: Linkedin, href: 'https://linkedin.com/in/mahabubranasaikat', label: 'LinkedIn' },
               { icon: Twitter, href: 'https://twitter.com/mahbubrnasaikat', label: 'Twitter' },
-              { icon: Facebook, href: 'https://www.facebook.com/mahabubranasaikat/', label: 'Facebook' },
               { icon: Mail, href: 'mailto:mahabubranasaikat@gmail.com', label: 'Email' },
               { icon: Phone, href: 'tel:+88017533610727', label: 'Phone' },
             ].map(({ icon: Icon, href, label }) => (

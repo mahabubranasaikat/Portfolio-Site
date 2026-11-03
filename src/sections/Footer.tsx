@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Github, Linkedin, Twitter, Facebook, Mail, Heart, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +12,6 @@ const Footer = () => {
     { icon: Github, href: 'https://github.com/mahabubranasaikat', label: 'GitHub' },
     { icon: Linkedin, href: 'https://linkedin.com/in/mahabubranasaikat', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://twitter.com/mahbubrnasaikat', label: 'Twitter' },
-    { icon: Facebook, href: 'https://www.facebook.com/mahabubranasaikat/', label: 'Facebook' },
     { icon: Mail, href: 'mailto:mahabubranasaikat@gmail.com', label: 'Email' },
   ];
 
